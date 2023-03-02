@@ -1,12 +1,12 @@
 import Header from "./Header";
-import './styles.scss'
-
-function Layout({ children }) {
+import styles from './layout.module.scss'
+function Layout({ background, children }) {
+    console.log('background', background)
     return (
         <div >
             <Header />
-            <div className="container-fluid main">
-                <div className="container-sm">
+            <div className={`container-fluid ${background ? styles.main : ''}`}>
+                <div className="container">
                     <div>{children}</div>
                 </div>
             </div>

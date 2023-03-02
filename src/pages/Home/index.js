@@ -1,7 +1,9 @@
+import ListCate from "./components/ListCate";
+
 function Home() {
     return ( 
         <div>
-            Home
+            <ListCate />
         </div>
      );
 }
