@@ -13,7 +13,7 @@ function Home() {
     return ( 
         <div>
             <ListCate />
-            <div className="mt-5 row">
+            <div className="mt-5 mb-5 row">
                 <div className="col-3">
                     <ProductCard />
                 </div>
