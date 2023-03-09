@@ -1,4 +1,16 @@
 import { library } from '@fortawesome/fontawesome-svg-core'; 
-import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+import { 
+    faMagnifyingGlass,
+    faMicrochip,
+    faMobile,
+    faGear,
+    faFloppyDisk,
+} from '@fortawesome/free-solid-svg-icons';
 
-library.add(faMagnifyingGlass)
+library.add(
+    faMagnifyingGlass,
+    faMicrochip,
+    faMobile,
+    faGear,
+    faFloppyDisk,
+)
