@@ -2,12 +2,12 @@ import ProductsFilter from "./components/ProductsFilter";
 
 function ListProduct() {
     return (
-        <div class="container text-center">
-            <div class="row">
-                <div class="col-3 bg-primary">
+        <div className="container text-center">
+            <div className="row">
+                <div className="col-3">
                     <ProductsFilter />
                 </div>
-                <div class="col bg-secondary">
+                <div className="col">
                     2 of 3 (wider)
                 </div>
             </div>
