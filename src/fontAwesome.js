@@ -5,17 +5,23 @@ import {
   faCamera,
   faCameraRotate,
   faMicrochip,
-  faFloppyDisk,
   faMedal,
-  faTruckMoving
+  faTruckMoving,
+  faMagnifyingGlass,
+  faMobile,
+  faGear,
+  faFloppyDisk,
 } from "@fortawesome/free-solid-svg-icons";
 library.add(
   faMagnifyingGlass,
   faMobile,
   faCamera,
   faCameraRotate,
-  faMicrochip,
-  faFloppyDisk,
   faMedal,
-  faTruckMoving
+  faTruckMoving,
+  faMagnifyingGlass,
+  faMicrochip,
+  faMobile,
+  faGear,
+  faFloppyDisk,
 );
