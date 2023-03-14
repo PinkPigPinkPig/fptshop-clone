@@ -4,7 +4,7 @@ function ListProduct() {
     return (
         <div className="container text-center">
             <div className="row">
-                <div className="col-3">
+                <div className="col-4">
                     <ProductsFilter />
                 </div>
                 <div className="col">
