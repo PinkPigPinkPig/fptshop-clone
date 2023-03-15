@@ -1,3 +1,4 @@
+import ProductCard from "components/ProductCard";
 import ProductsFilter from "./components/ProductsFilter";
 
 const productList = [
@@ -23,7 +24,7 @@ function ListProduct() {
     return (
         <div className="container text-center">
             <div className="row">
-                <div className="col-4">
+                <div className="col-3 ">
                     {productList.map((item, index) => {
                         return <div className="py-2" key={index}>
                             <ProductsFilter
@@ -36,8 +37,28 @@ function ListProduct() {
                     })}
                 </div>
                 <div className="col">
-                    2 of 3 (wider)
+                    <div className="mt-5 mb-5 row">
+                        <div className="col-3">
+                            <ProductCard />
+                        </div>
+                        <div className="col-3">
+                            <ProductCard />
+                        </div>
+                        <div className="col-3">
+                            <ProductCard />
+                        </div>
+                        <div className="col-3">
+                            <ProductCard />
+                        </div>
+                    </div>
+                    <div className="mt-5 mb-5 row">
+                        <div className="col-3">
+                            <ProductCard />
+                        </div>
+
+                    </div>
                 </div>
+
             </div>
         </div>
     );
