@@ -1,54 +1,35 @@
 import React, { useState } from 'react'
-import CheckBox from 'components/CheckBox'
 import { Checkbox, FormControlLabel, FormGroup } from '@mui/material'
+import styles from './components.module.scss'
 
-const listOptions = [
-    {
-        label: 'Samsung',
-        value: false
-    },
-    {
-        label: 'Xiaomi',
-        value: false
-    },
-    {
-        label: 'Asus',
-        value: false
-    },
-    {
-        label: 'Masstel',
-        value: false
-    },
-    {
-        label: 'Tecno',
-        value: false
-    },
-    {
-        label: 'Nokia',
-        value: false
-    },
-    {
-        label: 'Vivo',
-        value: false
-    },
-    {
-        label: 'Samsung',
-        value: false
-    },
-]
+export default function ProductsFilter({ label, option, row = 2 }) {
+    const list = [...Array(option.length).keys()].map(_ => false)
+    const [showAll, setShowAll] = useState(true)
+    const [listOption, setListOption] = useState(list)
 
-export default function ProductsFilter() {
+    const handleSubmit = (event, isAllOtp, index) => {
+        const value = event.target.checked
+        if (isAllOtp) {
+            setShowAll(value)
+            setListOption(list)
+            return
+        }
+        const newOption = [...listOption]
+        newOption[index] = value
+        setListOption(newOption)
+        setShowAll(false)
+    }
 
     return (
-        <div className="container text-center">
+        <div className={`container text-center mt-2`}>
+            <div className='align-baseline my-2'>
+                <p className='text-start fw-bold'>{label}</p>
+            </div>
             <FormGroup>
-                <div>
-                    <p>Hãng sản xuất</p>
-                </div>
-                <div className="row row-cols-3">
-                    <FormControlLabel className='col' control={<Checkbox />} label={'Tất cả'} />
-                    {listOptions.map((item, index) => (
-                        <FormControlLabel key={index} className='col' control={<Checkbox />} label={item.label} />
+                <div className={`row row-cols-${row} ${styles.container}`}>
+                    <FormControlLabel className='col' control={<Checkbox checked={showAll} onChange={event => handleSubmit(event, true)} />} label={'Tất cả'} />
+                    {option.map((item, index) => (
+                        <FormControlLabel key={index} className='col' control={<Checkbox checked={listOption[index]} onChange={event => handleSubmit(event, false, index)} />} label={item} />
                     ))}
                 </div>
             </FormGroup>
