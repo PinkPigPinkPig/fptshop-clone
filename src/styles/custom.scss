@@ -1,0 +1,11 @@
+
+
+$theme-colors: (
+  "light": #fff,
+);
+
+@import '~bootstrap/scss/bootstrap';
+@import '../../node_modules/bootstrap/scss/variables';
+@import "../../node_modules/bootstrap/scss/functions";
+
+

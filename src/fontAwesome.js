@@ -1,4 +1,4 @@
-import { library } from "@fortawesome/fontawesome-svg-core";
+import { library } from "@fortawesome/fontawesome-svg-core"
 import {
   faMagnifyingGlass,
   faMobile,
@@ -9,11 +9,23 @@ import {
   faTruckMoving,
   faGear,
   faFloppyDisk,
+  faLaptop,
+  faTablet,
+  faComputer,
+  faHeadphones,
+  faRotateRight,
+  faHouse,
+  faSimCard,
+  faTag,
+  faAppleWhole,
+  faFile,
+  faCircleUser,
+  faCartShopping,
   faCircleCheck,
   faSquare,
   faSquareCheck,
   faBorderAll,
-} from "@fortawesome/free-solid-svg-icons";
+} from "@fortawesome/free-solid-svg-icons"
 library.add(
   faMagnifyingGlass,
   faMobile,
@@ -24,8 +36,20 @@ library.add(
   faMicrochip,
   faGear,
   faFloppyDisk,
+  faLaptop,
+  faTablet,
+  faComputer,
+  faHeadphones,
+  faRotateRight,
+  faHouse,
+  faSimCard,
+  faTag,
+  faAppleWhole,
+  faFile,
+  faCircleUser,
+  faCartShopping,
   faCircleCheck,
   faSquare,
   faSquareCheck,
-  faBorderAll,
-);
+  faBorderAll
+)

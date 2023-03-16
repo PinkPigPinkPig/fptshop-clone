@@ -7,7 +7,7 @@ import styles from './components.module.scss'
 const ListCate = () => {
     const renderCate = (cate, index) => {
         return (
-            <Link to='#' className={`col-2 border p-4 bg-light text-decoration-none text-black`} key={index}>
+            <Link to={cate.route} className={`col-2 border p-4 bg-transparent text-decoration-none text-black`} key={index}>
                 <div className='d-flex flex-column justify-content-center align-items-center '>
                     <img src={cate?.image} alt='' className='mb-3'/>
                     <Typography>{cate.title}</Typography>
@@ -16,7 +16,7 @@ const ListCate = () => {
         )
     }
   return (
-    <div className='row'>
+    <div className='row m-0'>
         {CATE_DATA.map(renderCate)}
     </div>
   )
