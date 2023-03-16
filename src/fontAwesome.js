@@ -9,7 +9,10 @@ import {
   faTruckMoving,
   faGear,
   faFloppyDisk,
-  faCircleCheck
+  faCircleCheck,
+  faSquare,
+  faSquareCheck,
+  faBorderAll,
 } from "@fortawesome/free-solid-svg-icons";
 library.add(
   faMagnifyingGlass,
@@ -21,5 +24,8 @@ library.add(
   faMicrochip,
   faGear,
   faFloppyDisk,
-  faCircleCheck
+  faCircleCheck,
+  faSquare,
+  faSquareCheck,
+  faBorderAll,
 );
