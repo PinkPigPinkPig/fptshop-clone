@@ -1,10 +1,14 @@
-import { library } from '@fortawesome/fontawesome-svg-core'; 
-import { 
-    faMagnifyingGlass,
-    faMicrochip,
-    faMobile,
-    faGear,
-    faFloppyDisk,
+import { library } from "@fortawesome/fontawesome-svg-core";
+import {
+  faMagnifyingGlass,
+  faMobile,
+  faCamera,
+  faCameraRotate,
+  faMicrochip,
+  faMedal,
+  faTruckMoving,
+  faGear,
+  faFloppyDisk,
     faLaptop,
     faTablet,
     faComputer,
@@ -18,14 +22,21 @@ import {
     faCircleUser,
     faCartShopping,
     faCircleCheck,
-} from '@fortawesome/free-solid-svg-icons';
-
+  faCircleCheck,
+  faSquare,
+  faSquareCheck,
+  faBorderAll,
+} from "@fortawesome/free-solid-svg-icons";
 library.add(
-    faMagnifyingGlass,
-    faMicrochip,
-    faMobile,
-    faGear,
-    faFloppyDisk,
+  faMagnifyingGlass,
+  faMobile,
+  faCamera,
+  faCameraRotate,
+  faMedal,
+  faTruckMoving,
+  faMicrochip,
+  faGear,
+  faFloppyDisk,
     faLaptop,
     faTablet,
     faComputer,
@@ -39,4 +50,8 @@ library.add(
     faCircleUser,
     faCartShopping,
     faCircleCheck,
-)
+  faCircleCheck,
+  faSquare,
+  faSquareCheck,
+  faBorderAll,
+);
