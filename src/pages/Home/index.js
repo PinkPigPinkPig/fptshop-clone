@@ -11,9 +11,9 @@ const data = {
 }
 function Home() {
     return ( 
-        <div>
-            <ListCate />
-            <div className="mt-5 mb-5 row">
+        <div className="">
+            <div className="bg-light"><ListCate /></div>
+            <div className="mt-4 bg-light row m-0">
                 <div className="col-3">
                     <ProductCard />
                 </div>
