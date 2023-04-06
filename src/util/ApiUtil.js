@@ -1,4 +1,7 @@
+import axios from "axios"
 import { BASE_URL } from "config/env"
+import { LOCAL_STORE } from "constants/system"
+import { localStorageHelper } from "helpers"
 
 const UNAUTHORIZE_URL = []
 class ApiUtil {
@@ -15,7 +18,7 @@ class ApiUtil {
       config.headers["Content-Type"] = "application/json"
       config.headers["Accept"] = "application/json"
 
-      const token = await getAccessToken()
+      const token = localStorageHelper.getItem(LOCAL_STORE.TOKEN)
       config.headers['Authorization'] = `Bearer ${token}`
       console.log('config ', config)
       config.url = BASE_URL + url
