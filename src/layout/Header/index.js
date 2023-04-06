@@ -1,3 +1,4 @@
+import Authentication from 'layout/Authen';
 import logoImg from "../../assets/images/logo.png"
 import styles from "./header.module.scss"
 import SearchIcon from "@mui/icons-material/Search"
@@ -8,6 +9,16 @@ import { Button, IconButton } from "@mui/material"
 
 function Header() {
   const renderMenu = (item, index) => {
+    if (index === 2) {
+      return (
+        <Authentication key={index} children={
+          <div className='d-flex flex-column align-items-center text-decoration-none text-white px-2' >
+            <FontAwesomeIcon className="fs-4" icon={item.icon} />
+            <span className='mt-1'>{item.title}</span>
+          </div>
+        } />
+      )
+    }
     return (
       <Link
         to={item.route}
@@ -56,6 +67,7 @@ function Header() {
         <div className='container d-flex justify-content-xl-between flex-wrap px-0 py-2'>
           {CATE_DATA.map(renderCate)}
         </div>
+
       </div>
     </div>
   )

@@ -1,3 +1,32 @@
 .container {
   width: 360px;
 }
+
+.productSection {
+  width: 888px;
+}
+
+.productItem {
+  -ms-flex: 0 0 230px;
+  flex: 0 0 230px;
+}
+
+.listContainer {
+  width: 888px;
+  height: 132px;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: row;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+}
+
+.listContainer::-webkit-scrollbar {
+  display: none;
+}
+
+.item {
+  width: 128px;
+  height: 40px;
+}

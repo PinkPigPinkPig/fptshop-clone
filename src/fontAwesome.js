@@ -25,15 +25,16 @@ import {
   faSquare,
   faSquareCheck,
   faBorderAll,
+  faUser
 } from "@fortawesome/free-solid-svg-icons"
 library.add(
   faMagnifyingGlass,
   faMobile,
   faCamera,
   faCameraRotate,
+  faMicrochip,
   faMedal,
   faTruckMoving,
-  faMicrochip,
   faGear,
   faFloppyDisk,
   faLaptop,
@@ -51,5 +52,6 @@ library.add(
   faCircleCheck,
   faSquare,
   faSquareCheck,
-  faBorderAll
+  faBorderAll,
+  faUser
 )

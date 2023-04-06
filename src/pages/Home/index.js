@@ -17,7 +17,13 @@ function Home() {
     const handleCallAPI = () => {
         dispatch(ProductActions.getTest({}))
     }
-    return ( 
+
+    useEffect(() => {
+        dispatch(ProductActions.getProductHomePageRequest())
+    }, [])
+
+
+    return (
         <div className="">
             <div className="bg-light"><ListCate /></div>
             <div className="mt-4 bg-light row m-0">
@@ -33,13 +39,13 @@ function Home() {
                 <div className="col-3">
                     <ProductCard />
                 </div>
-                
+
             </div>
             <button onClick={handleCallAPI}>
                 Click me
             </button>
         </div>
-     );
+    );
 }
 
 export default Home;

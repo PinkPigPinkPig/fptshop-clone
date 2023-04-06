@@ -5,10 +5,29 @@ import { ProductActions } from "./ProductRedux"
 
 export function* watchProductSaga() {
   console.log('watchProductSaga')
-  yield all([takeLatest(ProductActions.getTest.type, handleGetTest)])
+  yield all([
+    takeLatest(ProductActions.getSearchProductFailed.type, handleSearchProduct),
+    takeLatest(ProductActions.getAllCategoryRequest.type, handleGetCategory),
+    takeLatest(ProductActions.getProductHomePageRequest.type, handleProductHomePage),
+    takeLatest(ProductActions.getProductWithOptionRequest.type, handleProductWithOption),
+    takeLatest(ProductActions.getProductDetailRequest.type, handleDetailRequest),
+    takeLatest(ProductActions.getProductCompareRequest.type, handleCompareRequest),
+
+  ])
 }
 
-function* handleGetTest(action) {
+function* handleSearchProduct(action) {
+  try {
+    console.log('vao test roi')
+    const api = () => ApiUtil.fetch(ApiConfig.SEACRCH_PRODUCT + action.payload, { method: "GET" })
+    const response = yield call(api)
+    console.log("test response", response)
+  } catch (error) {
+    console.log("error", error)
+  }
+}
+
+function* handleGetCategory(action) {
   try {
     console.log('vao test roi')
     const api = () => ApiUtil.fetch(ApiConfig.GET_ALL_CATE, { method: "GET" })
@@ -18,3 +37,44 @@ function* handleGetTest(action) {
     console.log("error", error)
   }
 }
+
+function* handleProductHomePage(action) {
+  try {
+    const api = () => ApiUtil.fetch(ApiConfig.PRODUCT_HOME_PAGE, { method: "GET" })
+    const response = yield call(api)
+    console.log("test response", response)
+  } catch (error) {
+    console.log("error", error)
+  }
+}
+
+function* handleProductWithOption(action) {
+  try {
+    const api = () => ApiUtil.fetch(ApiConfig.PRODUCT_WITH_OPTION + action.payload, { method: "GET" })
+    const response = yield call(api)
+    console.log("test response", response)
+  } catch (error) {
+    console.log("error", error)
+  }
+}
+
+function* handleCompareRequest(action) {
+  try {
+    const api = () => ApiUtil.fetch(ApiConfig.PRODUCT_COMPARE, { method: "GET" })
+    const response = yield call(api)
+    console.log("test response", response)
+  } catch (error) {
+    console.log("error", error)
+  }
+}
+
+function* handleDetailRequest(action) {
+  try {
+    const api = () => ApiUtil.fetch(ApiConfig.PRODUCT_DETAIL + action.payload, { method: "GET" })
+    const response = yield call(api)
+    console.log("test response", response)
+  } catch (error) {
+    console.log("error", error)
+  }
+}
+
