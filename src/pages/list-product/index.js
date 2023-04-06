@@ -1,5 +1,7 @@
 import ProductCard from "components/ProductCard";
 import ProductsFilter from "./components/ProductsFilter";
+import styles from './components/components.module.scss'
+import ListOption from "./components/ListOption";
 
 const productList = [
     {
@@ -21,8 +23,10 @@ const productList = [
 ]
 
 function ListProduct() {
+const listProduct = [...Array(7).keys()]
+
     return (
-        <div className="container text-center">
+        <div className={`container text-center p-5 my-5 bg-light rounded-3`}>
             <div className="row">
                 <div className="col-3 ">
                     {productList.map((item, index) => {
@@ -36,26 +40,14 @@ function ListProduct() {
                         </div>
                     })}
                 </div>
-                <div className="col">
-                    <div className="mt-5 mb-5 row">
-                        <div className="col-3">
-                            <ProductCard />
-                        </div>
-                        <div className="col-3">
-                            <ProductCard />
-                        </div>
-                        <div className="col-3">
-                            <ProductCard />
-                        </div>
-                        <div className="col-3">
-                            <ProductCard />
-                        </div>
-                    </div>
-                    <div className="mt-5 mb-5 row">
-                        <div className="col-3">
-                            <ProductCard />
-                        </div>
-
+                <div className={`col ${styles.productSection}`}>
+                    <ListOption />
+                    <div className={`row three-cols bg-white rounded-3`}>
+                        {listProduct.map((item, index) => (
+                            <div key={index} className={`col-4 my-2`}>
+                                <ProductCard />
+                            </div>
+                        ))}
                     </div>
                 </div>
 

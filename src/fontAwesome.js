@@ -7,7 +7,8 @@ import {
     faFloppyDisk,
     faSquare,
     faSquareCheck,
-    faBorderAll
+    faBorderAll,
+    faUser
 } from '@fortawesome/free-solid-svg-icons';
 
 library.add(
@@ -18,5 +19,6 @@ library.add(
     faFloppyDisk,
     faSquare,
     faSquareCheck,
-    faBorderAll
+    faBorderAll,
+    faUser,
 )
