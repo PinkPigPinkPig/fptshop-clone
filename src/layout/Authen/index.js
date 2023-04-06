@@ -7,7 +7,7 @@ import styles from "./layout.module.scss";
 import CloseIcon from '@mui/icons-material/Close';
 import SignUp from "./SignUp";
 
-function Authentication() {
+function Authentication({ children }) {
     const [modalVisible, setModalVisible] = useState(false);
     const [toggleView, setToggleView] = useState(false);
 
@@ -17,11 +17,7 @@ function Authentication() {
                 open={modalVisible}
                 modal
                 onOpen={() => setModalVisible(true)}
-                trigger={
-                    <Button variant="contained" endIcon={<AccountCircleIcon />}>
-                        {"Đăng nhập"}
-                    </Button>
-                }
+                trigger={children}
             >
                 <div className={styles.container} >
                     <div className='bg-white px-5 pt-5 pb-4 position-relative rounded-3' style={{ width: 400 }}>

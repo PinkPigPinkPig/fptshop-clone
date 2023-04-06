@@ -1,3 +1,4 @@
+import { Footer } from "./Footer";
 import Header from "./Header";
 import styles from './layout.module.scss'
 function Layout({ background, children }) {
@@ -5,11 +6,12 @@ function Layout({ background, children }) {
     return (
         <div >
             <Header />
-            <div className={`container-fluid ${background ? styles.main : ''}`}>
-                <div className="container">
+            <div className={`container-fluid ${styles.main}`}>
+                <div className="container my-5 px-0">
                     <div>{children}</div>
                 </div>
             </div>
+            <Footer />
         </div>
     )
 }

@@ -1,7 +1,10 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Button } from "@mui/material";
 import ProductCard from "components/ProductCard";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { ProductActions } from "ReduxSaga/Product/ProductRedux";
 import { PRODUCT_IMAGES } from "Themes/Image";
 import ListCate from "./components/ListCate";
 
@@ -10,10 +13,20 @@ const data = {
     image: ''
 }
 function Home() {
-    return ( 
-        <div>
-            <ListCate />
-            <div className="mt-5 mb-5 row">
+    const dispatch = useDispatch()
+    const handleCallAPI = () => {
+        dispatch(ProductActions.getTest({}))
+    }
+
+    useEffect(() => {
+        dispatch(ProductActions.getProductHomePageRequest())
+    }, [])
+
+
+    return (
+        <div className="">
+            <div className="bg-light"><ListCate /></div>
+            <div className="mt-4 bg-light row m-0">
                 <div className="col-3">
                     <ProductCard />
                 </div>
@@ -26,10 +39,13 @@ function Home() {
                 <div className="col-3">
                     <ProductCard />
                 </div>
-                
+
             </div>
+            <button onClick={handleCallAPI}>
+                Click me
+            </button>
         </div>
-     );
+    );
 }
 
 export default Home;

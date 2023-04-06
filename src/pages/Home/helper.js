@@ -9,50 +9,62 @@ const CATE_DATA = [
     {
         title: 'Điện thoại',
         image: phoneImg,
+        route: '/list-product',
     },
     {
         title: 'Laptop',
         image: laptopImg,
+        route: '/list-product',
     },
     {
         title: 'Pc - lắp ráp',
         image: pcImg,
+        route: '/list-product',
     },
     {
         title: 'Máy tính bảng',
         image: tabletImg,
+        route: '/list-product',
     },
     {
         title: 'Thiết bị thông minh',
         image: smartDeviceImg,
+        route: '/list-product',
     },
     {
         title: 'Gia dụng',
         image: houseWareImg,
+        route: '/list-product',
     },
     {
         title: 'Apple',
         image: phoneImg,
+        route: '/list-product',
     },
     {
         title: 'Samsung',
         image: laptopImg,
+        route: '/list-product',
     },
     {
         title: 'Đồng hồ thông minh',
         image: pcImg,
+        route: '/list-product',
     },
     {
         title: 'Phụ kiện',
         image: tabletImg,
+        route: '/list-product',
     },
     {
         title: 'Màn hình',
         image: smartDeviceImg,
+        route: '/list-product',
     },
     {
         title: 'Máy cũ',
         image: houseWareImg,
+        route: '/list-product',
     },
     
 ]
