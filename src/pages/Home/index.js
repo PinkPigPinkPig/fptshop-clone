@@ -14,10 +14,9 @@ const data = {
 }
 function Home() {
     const dispatch = useDispatch()
-    useEffect(() => {
-        console.log('vao day roi')
+    const handleCallAPI = () => {
         dispatch(ProductActions.getTest({}))
-    }, [])
+    }
     return ( 
         <div className="">
             <div className="bg-light"><ListCate /></div>
@@ -36,6 +35,9 @@ function Home() {
                 </div>
                 
             </div>
+            <button onClick={handleCallAPI}>
+                Click me
+            </button>
         </div>
      );
 }

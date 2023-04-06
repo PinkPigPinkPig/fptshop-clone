@@ -7,7 +7,7 @@ const productRedux = createSlice({
   name: 'productRedux',
   initialState,
   reducers: {
-    getTest: (state) => {
+    getTest: (state, action) => {
         console.log('vao redux')
     }
   }
