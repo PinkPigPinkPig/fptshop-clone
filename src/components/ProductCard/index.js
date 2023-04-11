@@ -6,7 +6,8 @@ import { PRODUCT_IMAGES } from "Themes/Image"
 import { PriceBar } from "./PriceBar"
 import styles from "./ProductCard.module.scss"
 
-const ProductCard = ({ name, image, price, discount, configuration }) => {
+const ProductCard = ({ name, image, price, discount, configuration, specification, saleOff }) => {
+  const { cpu, screenSize, ram, rom, cpuClock  } = specification
   return (
     <div className={`${styles.productCard} bg-light p-3`}>
       <div className='w-100 d-flex justify-content-center p-3'>
@@ -19,26 +20,26 @@ const ProductCard = ({ name, image, price, discount, configuration }) => {
         </Link>
       </div>
       <div>
-        <p className='fs-5 fw-bold'>iPhone 13 128GB</p>
+        <p className='fs-5 fw-bold'>{name}</p>
         <div className="mb-3">
-          <PriceBar />
+          <PriceBar price={price} saleOff={saleOff} />
         </div>
         <div className='d-flex flex-wrap fs-6 text-black-50 mb-3'>
           <div className="me-2">
             <FontAwesomeIcon icon='microchip' />
-            <span className="ms-1">Apple A15 Bionic</span>
+            <span className="ms-1">{cpu}</span>
           </div>
           <div className="me-2">
             <FontAwesomeIcon icon='mobile' />
-            <span className="ms-1">6.1 inch</span>
+            <span className="ms-1">{screenSize}</span>
           </div>
           <div className="me-2">
             <FontAwesomeIcon icon='gear' />
-            <span className="ms-1">4 GB</span>
+            <span className="ms-1">{cpuClock}</span>
           </div>
           <div className="me-2">
             <FontAwesomeIcon icon='floppy-disk' />
-            <span className="ms-1">128 GB</span>
+            <span className="ms-1">{ram}</span>
           </div>
         </div>
         <div className="d-flex justify-content-between">

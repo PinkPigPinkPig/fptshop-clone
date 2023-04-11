@@ -21,7 +21,7 @@ function* handleSearchProduct(action) {
     console.log('vao test roi')
     const api = () => ApiUtil.fetch(ApiConfig.SEACRCH_PRODUCT + action.payload, { method: "GET" })
     const response = yield call(api)
-    console.log("test response", response)
+
   } catch (error) {
     console.log("error", error)
   }
@@ -29,10 +29,9 @@ function* handleSearchProduct(action) {
 
 function* handleGetCategory(action) {
   try {
-    console.log('vao test roi')
     const api = () => ApiUtil.fetch(ApiConfig.GET_ALL_CATE, { method: "GET" })
     const response = yield call(api)
-    console.log("test response", response)
+    yield put(ProductActions.getAllCategorySuccess(response?.data))
   } catch (error) {
     console.log("error", error)
   }
@@ -42,7 +41,7 @@ function* handleProductHomePage(action) {
   try {
     const api = () => ApiUtil.fetch(ApiConfig.PRODUCT_HOME_PAGE, { method: "GET" })
     const response = yield call(api)
-    console.log("test response", response)
+    yield put(ProductActions.getProductHomePageSuccess(response?.data))
   } catch (error) {
     console.log("error", error)
   }

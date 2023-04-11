@@ -28,7 +28,7 @@ class ApiUtil {
       let response = await axios(config)
       const data = response.data
       console.log('response ' + url + ' >>>>>> ' + response.status + ' : ', data)
-      if (data && data.status === 200) {
+      if (data && data.code === 200) {
         return data
       }
     } catch (error) {

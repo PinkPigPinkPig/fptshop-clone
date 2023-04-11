@@ -5,7 +5,7 @@ function ListOption() {
 
   const list = ['Samsung', 'Tecno', 'Nokia', 'Vivo', 'Iphone', 'Xiaomi', 'Oppo']
   const Item = ({ label }) => (
-    <div className={`${styles.item} py-2 mx-2 bg-success`}>
+    <div className={`${styles.item} py-2 mx-2 bg-success`} onScroll={(e) => console.log(e)}>
       <p className={`${styles.item}`}>{label}</p>
     </div>
   )
