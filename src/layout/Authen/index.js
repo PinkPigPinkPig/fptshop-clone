@@ -9,7 +9,7 @@ import SignUp from "./SignUp";
 
 function Authentication({ children }) {
     const [modalVisible, setModalVisible] = useState(false);
-    const [toggleView, setToggleView] = useState(false);
+    const [toggleView, setToggleView] = useState(true);
 
     return (
         <div className="px-2">
