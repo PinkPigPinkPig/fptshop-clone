@@ -20,6 +20,7 @@ function Home() {
 
     useEffect(() => {
         dispatch(ProductActions.getProductHomePageRequest())
+        dispatch(ProductActions.getAllCategoryRequest())
     }, [])
 
 
