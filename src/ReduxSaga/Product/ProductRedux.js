@@ -17,11 +17,15 @@ const productRedux = createSlice({
     getSearchProductFailed: (state, action) => { },
 
     getAllCategoryRequest: (state, action) => { },
-    getAllCategorySuccess: (state, action) => { },
+    getAllCategorySuccess: (state, action) => { 
+      state.category = action.payload
+    },
     getAllCategoryFailed: (state, action) => { },
 
     getProductHomePageRequest: (state, action) => { },
-    getProductHomePageSuccess: (state, action) => { },
+    getProductHomePageSuccess: (state, action) => {
+      state.productHomePage = action.payload
+    },
     getProductHomePageFailed: (state, action) => { },
 
     getProductWithOptionRequest: (state, action) => { },
@@ -38,6 +42,7 @@ const productRedux = createSlice({
   }
 })
 
+export const productSelector = (state) => state.product
 export const ProductActions = productRedux.actions
 
 export default productRedux.reducer

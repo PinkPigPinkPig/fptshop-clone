@@ -23,11 +23,11 @@ const productList = [
 ]
 
 function ListProduct() {
-const listProduct = [...Array(7).keys()]
+    const listProduct = [...Array(7).keys()]
 
     return (
-        <div className={`container text-center p-5 my-5 bg-light rounded-3`}>
-            <div className="row">
+        <div className={`container text-center p-5 my-5 bg-light rounded-3`} style={{ minWidth: '800px' }}>
+            <div className="d-flex" style={{ minWidth: '800px' }}>
                 <div className="col-3 ">
                     {productList.map((item, index) => {
                         return <div className="py-2" key={index}>

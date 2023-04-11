@@ -19,13 +19,13 @@ class ApiUtil {
       config.headers["Accept"] = "application/json"
 
       const token = localStorageHelper.getItem(LOCAL_STORE.TOKEN)
-      config.headers['Authorization'] = `Bearer ${token}`
+      // config.headers['Authorization'] = `Bearer ${token}`
       console.log('config ', config)
       config.url = BASE_URL + url
       let response = await axios(config)
       const data = response.data
       console.log('response ' + url + ' >>>>>> ' + response.status + ' : ', data)
-      if (data && data.status === 200) {
+      if (data && data.code === 200) {
         return data
       }
     } catch (error) {
