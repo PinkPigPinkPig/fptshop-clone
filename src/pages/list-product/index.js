@@ -22,7 +22,10 @@ const productList = [
     }
 ]
 
-function ListProduct() {
+function ListProduct(props) {
+    // const { category } = props.match.params;
+    // console.log({category})
+    console.log('ListProduct')
     const listProduct = [...Array(7).keys()]
 
     return (
@@ -42,13 +45,13 @@ function ListProduct() {
                 </div>
                 <div className={`col ${styles.productSection}`}>
                     <ListOption />
-                    <div className={`row three-cols bg-white rounded-3`}>
+                    {/* <div className={`row three-cols bg-white rounded-3`}>
                         {listProduct.map((item, index) => (
                             <div key={index} className={`col-4 my-2`}>
                                 <ProductCard />
                             </div>
                         ))}
-                    </div>
+                    </div> */}
                 </div>
 
             </div>

@@ -2,37 +2,37 @@ const CATE_DATA = [
     {
         icon: 'mobile',
         title: 'ĐIỆN THOẠI',
-        route: '/list-product',
+        cate: 'dien-thoai',
     },
     {
         icon: 'laptop',
         title: 'LAPTOP',
-        route: '/list-product',
+        cate: 'laptop',
     },
     {
         icon: 'tablet',
         title: 'MÁY TÍNH BẢNG',
-        route: '/list-product',
+        cate: 'tablet',
     },
     {
         icon: 'apple-whole',
         title: 'APPLE',
-        route: '/list-product',
+        cate: 'apple',
     },
     {
         icon: 'computer',
         title: 'PC-LINH KIỆN',
-        route: '/list-product',
+        cate: 'linh-kien',
     },
     {
         icon: 'headphones',
         title: 'PHỤ KIỆN',
-        route: '/list-product',
+        cate: 'phu-kien',
     },
     {
         icon: 'rotate-right',
         title: 'MÁY CŨ GIA RẺ',
-        route: '/list-product',
+        cate: 'old-device',
     },
     {
         icon: 'house',

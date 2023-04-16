@@ -34,7 +34,7 @@ function Header() {
   const renderCate = (item, index) => {
     return (
       <Link
-        to={item.route}
+        to={`/${item.cate}`}
         key={index}
         className='text-decoration-none text-white'
       >
