@@ -21,7 +21,7 @@ const ListCate = () => {
     }
   return (
     <div className='row m-0'>
-        {category.map(renderCate)}
+        {category && category?.map(renderCate)}
     </div>
   )
 }
