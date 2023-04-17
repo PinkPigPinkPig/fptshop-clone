@@ -33,6 +33,7 @@ function Home() {
               return (
                 <div className="col-3" key={index}>
                   <ProductCard
+                                    id={item?.id}
                     price={item?.price}
                     name={item?.productName}
                     specification={item?.specification}
@@ -51,6 +52,7 @@ function Home() {
             return (
               <div className="col-3" key={index}>
                 <ProductCard
+                                    id={item?.id}
                   price={item?.price}
                   name={item?.productName}
                   specification={item?.specification}

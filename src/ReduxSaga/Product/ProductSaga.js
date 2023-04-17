@@ -71,7 +71,7 @@ function* handleDetailRequest(action) {
   try {
     const api = () => ApiUtil.fetch(ApiConfig.PRODUCT_DETAIL + action.payload, { method: "GET" })
     const response = yield call(api)
-    console.log("test response", response)
+    yield put(ProductActions.getProductDetailSuccess(response?.data))
   } catch (error) {
     console.log("error", error)
   }
