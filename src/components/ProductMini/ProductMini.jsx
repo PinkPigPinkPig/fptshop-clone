@@ -31,6 +31,7 @@ const ProductMini = () => {
           <FormControl className={"w-50"}>
             <InputLabel id='demo-simple-select-label'>Màu sắc</InputLabel>
             <Select
+              size="small"
               labelId='demo-simple-select-label'
               id='demo-simple-select'
               value={color}

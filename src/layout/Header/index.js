@@ -9,7 +9,7 @@ import { Button, Divider, IconButton, InputBase, Paper } from "@mui/material"
 
 function Header() {
   const renderMenu = (item, index) => {
-    if (index === 2) {
+    if (index === 0) {
       return (
         <Authentication
           key={index}

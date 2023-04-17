@@ -9,7 +9,7 @@ const NotFound = () => {
     }
   return (
         <div className='container bg-light'>
-            <Box sx={{display: 'flex', justifyContent: 'center', alignItems: 'center', height: '50vh'}}>
+            <Box sx={{display: 'flex', justifyContent: 'center', alignItems: 'center', paddingY: 5}}>
                 <Stack spacing={5}>
                     <Typography variant='h3' >Trang này không tồn tại</Typography>
                     <Button variant="contained" onClick={onClick}>Quay về trang chủ</Button>
