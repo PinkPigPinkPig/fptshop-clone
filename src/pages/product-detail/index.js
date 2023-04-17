@@ -33,7 +33,7 @@ console.log('state: ', state);
 
         <div className="row">
           <ProductPreview />
-          <PriceAndPurchase />
+          <PriceAndPurchase product={productDetail} />
         </div>
       </div>
     </div>

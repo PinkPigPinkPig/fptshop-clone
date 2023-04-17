@@ -13,7 +13,7 @@ import {
 
 const ProductMini = () => {
   const [color, setColor] = useState(10)
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(3)
   return (
     <>
       <div className='d-flex flex-row mb-3'>
@@ -53,9 +53,7 @@ const ProductMini = () => {
           </button>
           <input
             type='text'
-            readonly=''
             className={`${styles.countInput}`}
-            value='3'
           />
           <button
             type='button'
@@ -66,7 +64,7 @@ const ProductMini = () => {
         </div>
         <div className={`w-25 text-wrap`}>
           <span className='text-break'>
-            egeuiaeiuwgiuegsdjflksdjflksjdiquwgeiuqgweiu
+            egeuiaeiu
           </span>
         </div>
       </div>

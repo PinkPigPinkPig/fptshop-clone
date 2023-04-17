@@ -1,30 +1,46 @@
-import React, { useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Button, Modal } from "@mui/material";
-import styles from "../productDetail.module.scss";
-import PurchaseModal from "./PurchaseModal";
-import { useSelector } from "react-redux";
-import { productSelector } from "ReduxSaga/Product/ProductRedux";
-import { moneyConvert } from "util/Ultilities";
+import React, { useState } from "react"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { Button, Modal } from "@mui/material"
+import styles from "../productDetail.module.scss"
+import PurchaseModal from "./PurchaseModal"
+import { useSelector } from "react-redux"
+import { productSelector } from "ReduxSaga/Product/ProductRedux"
+import { moneyConvert } from "util/Ultilities"
+import { localStorageHelper } from "helpers"
+import { LOCAL_STORE } from "constants/system"
 
-const PriceAndPurchase = () => {
+const PriceAndPurchase = ({ product }) => {
   const { productDetail } = useSelector(productSelector)
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(false)
 
   const handleClose = () => {
-    setOpen(false);
-  };
+    setOpen(false)
+  }
 
-  const handleOpen = () => {
-    setOpen(true);
-  };
+  const handleClickBuyNow = async () => {
+    setOpen(true)
+    let data = JSON.parse(localStorageHelper.getItem(LOCAL_STORE.CART))
+    if (!data) {
+      data = []
+    }
+    if (data?.every((item) => item?.id != product?.id)) {
+      data.push(product)
+    }
+    await localStorageHelper.setItem(LOCAL_STORE.CART, JSON.stringify(data))
+    setOpen(true)
+  }
 
   return (
     <div className="col">
       <div className="d-flex flex-row justify-content-between">
         <div className="d-flex flex-row my-3">
           <span className="display-6 me-3 text-danger">
-            <strong>{moneyConvert(productDetail?.price - productDetail?.price * productDetail?.saleOff / 100)}</strong>
+            <strong>
+              {moneyConvert(
+                productDetail?.price -
+                  (productDetail?.price * productDetail?.saleOff) / 100
+              )}
+            </strong>
           </span>
           <span className="align-self-end text-secondary text-decoration-line-through">
             {moneyConvert(productDetail?.price)}
@@ -90,9 +106,7 @@ const PriceAndPurchase = () => {
       <Button
         variant="contained"
         color="error"
-        onClick={() => {
-          handleOpen()
-        }}
+        onClick={handleClickBuyNow}
         className={`${styles.buttonHeight} w-100 mb-3`}
       >
         <span className="fs-4">MUA NGAY</span>
@@ -112,7 +126,7 @@ const PriceAndPurchase = () => {
           <span className="fs-4">TRẢ GÓP QUA THẺ</span>
           <span className="text-capitalize">Visa/ Master Card</span>
         </Button>
-        <PurchaseModal visible={open} onClose={handleClose} />
+        {open && <PurchaseModal visible={open} onClose={handleClose} />}
       </div>
       <div className="d-flex flex-column bg-light p-3 my-3">
         <div>
@@ -120,7 +134,7 @@ const PriceAndPurchase = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default PriceAndPurchase;
+export default PriceAndPurchase

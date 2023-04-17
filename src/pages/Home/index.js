@@ -17,6 +17,8 @@ function Home() {
     dispatch(ProductActions.getAllCategoryRequest())
   }, [dispatch])
 
+  console.log("productHomePage", productHomePage)
+
   return (
     <div className="">
       <div className="bg-light">
@@ -30,6 +32,8 @@ function Home() {
               return (
                 <div className="col-3" key={index}>
                   <ProductCard
+                    cate={item?.category?.routeKey}
+                    routeKey={item?.productCode?.toLowerCase()}
                     id={item?.id}
                     price={item?.price}
                     name={item?.productName}
@@ -49,6 +53,8 @@ function Home() {
             return (
               <div className="col-3" key={index}>
                 <ProductCard
+                  cate={item?.category?.routeKey}
+                  routeKey={item?.productCode?.toLowerCase()}
                   id={item?.id}
                   price={item?.price}
                   name={item?.productName}
