@@ -30,7 +30,7 @@ const ProductCard = ({
   return (
     <div className={`${styles.productCard} bg-light p-3`}>
       <div className="w-100 d-flex justify-content-center p-3">
-        <Link to={`/product-detail/${cate}/${routeKey}`} state={{ id: id }}>
+        <Link to={`/product-detail/${cate}/${routeKey}`} state={id}>
           <img
             src={PRODUCT_IMAGES.iphone13}
             className={`img-fluid ${styles.img}`}
