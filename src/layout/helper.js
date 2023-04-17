@@ -2,37 +2,37 @@ const CATE_DATA = [
     {
         icon: 'mobile',
         title: 'ĐIỆN THOẠI',
-        route: '/list-product',
+        cate: 'dien-thoai',
     },
     {
         icon: 'laptop',
         title: 'LAPTOP',
-        route: '/list-product',
+        cate: 'laptop',
     },
     {
         icon: 'tablet',
         title: 'MÁY TÍNH BẢNG',
-        route: '/list-product',
+        cate: 'tablet',
     },
     {
         icon: 'apple-whole',
         title: 'APPLE',
-        route: '/list-product',
+        cate: 'apple',
     },
     {
         icon: 'computer',
         title: 'PC-LINH KIỆN',
-        route: '/list-product',
+        cate: 'linh-kien',
     },
     {
         icon: 'headphones',
         title: 'PHỤ KIỆN',
-        route: '/list-product',
+        cate: 'phu-kien',
     },
     {
         icon: 'rotate-right',
         title: 'MÁY CŨ GIA RẺ',
-        route: '/list-product',
+        cate: 'old-device',
     },
     {
         icon: 'house',
@@ -53,16 +53,6 @@ const CATE_DATA = [
 
 const MENU_DATA = [
     {
-        icon: 'file',
-        title: 'Thông tin hay',
-        route: '/list-product',
-    },
-    {
-        icon: 'circle-check',
-        title: 'Thanh toán & Tiện ích',
-        route: '/list-product',
-    },
-    {
         icon: 'circle-user',
         title: 'Tài khoản của tôi',
         route: '/list-product',
@@ -70,7 +60,7 @@ const MENU_DATA = [
     {
         icon: 'cart-shopping',
         title: 'Giỏ hàng',
-        route: '/list-product',
+        route: '/cart',
     },
 ]
 

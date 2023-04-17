@@ -35,14 +35,6 @@ function ProductDetail() {
           <ProductPreview />
           <PriceAndPurchase />
         </div>
-        {/* <div className="row">
-      
-          <div className="col">
-            <div className="d-flex flex-column bg-light p-3 ">
-
-            </div>
-          </div>
-        </div> */}
       </div>
     </div>
   );

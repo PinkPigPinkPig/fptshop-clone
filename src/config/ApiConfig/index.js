@@ -1,3 +1,4 @@
+/* eslint-disable import/no-anonymous-default-export */
 export default {
     //API end point
     BUY_PRODUCT: '/api/v1/selling/buy-product',
