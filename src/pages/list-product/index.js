@@ -2,6 +2,8 @@ import ProductCard from "components/ProductCard";
 import ProductsFilter from "./components/ProductsFilter";
 import styles from './components/components.module.scss'
 import ListOption from "./components/ListOption";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useEffect, useMemo } from "react";
 
 const productList = [
     {
@@ -23,11 +25,16 @@ const productList = [
 ]
 
 function ListProduct(props) {
-    // const { category } = props.match.params;
-    // console.log({category})
-    console.log('ListProduct')
-    const listProduct = [...Array(7).keys()]
-
+    const location = useLocation()
+    const navigate = useNavigate()
+    const id = useMemo(() => {
+        return location?.state?.id
+    }, [location])
+    useEffect(() => {
+        if(!id) {
+            navigate('/404')
+        }
+    }, [id])
     return (
         <div className={`container text-center p-5 my-5 bg-light rounded-3`} style={{ minWidth: '800px' }}>
             <div className="d-flex" style={{ minWidth: '800px' }}>

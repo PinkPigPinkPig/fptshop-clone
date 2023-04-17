@@ -23,10 +23,6 @@ function ProductDetail() {
           <ProductPreview />
           <PriceAndPurchase />
         </div>
-        <div className="row">
-          <div className="col">Product detail</div>
-          <div className="col">Product specification</div>
-        </div>
       </div>
     </div>
   );

@@ -53,16 +53,6 @@ const CATE_DATA = [
 
 const MENU_DATA = [
     {
-        icon: 'file',
-        title: 'Thông tin hay',
-        route: '/list-product',
-    },
-    {
-        icon: 'circle-check',
-        title: 'Thanh toán & Tiện ích',
-        route: '/list-product',
-    },
-    {
         icon: 'circle-user',
         title: 'Tài khoản của tôi',
         route: '/list-product',
@@ -70,7 +60,7 @@ const MENU_DATA = [
     {
         icon: 'cart-shopping',
         title: 'Giỏ hàng',
-        route: '/list-product',
+        route: '/cart',
     },
 ]
 
