@@ -17,7 +17,7 @@ const productRedux = createSlice({
     getSearchProductFailed: (state, action) => { },
 
     getAllCategoryRequest: (state, action) => { },
-    getAllCategorySuccess: (state, action) => { 
+    getAllCategorySuccess: (state, action) => {
       state.category = action.payload
     },
     getAllCategoryFailed: (state, action) => { },
@@ -33,7 +33,9 @@ const productRedux = createSlice({
     getProductWithOptionFailed: (state, action) => { },
 
     getProductDetailRequest: (state, action) => { },
-    getProductDetailSuccess: (state, action) => { },
+    getProductDetailSuccess: (state, action) => {
+      state.productDetail = action.payload
+    },
     getProductDetailFailed: (state, action) => { },
 
     getProductCompareRequest: (state, action) => { },

@@ -1,9 +1,8 @@
 import React from "react"
+import { moneyConvert } from "util/Ultilities"
 
 export const PriceBar = ({ price, rate, saleOff }) => {
-  const moneyConvert = (number) => {
-    return number.toLocaleString('it-IT', { style: 'currency', currency: 'VND' })
-  }
+
   return (
     <div className="d-flex justify-content-between">
       <div className="bg-danger px-3 rounded-pill">

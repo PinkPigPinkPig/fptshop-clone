@@ -3,8 +3,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Button, Modal } from "@mui/material";
 import styles from "../productDetail.module.scss";
 import PurchaseModal from "./PurchaseModal";
+import { useSelector } from "react-redux";
+import { productSelector } from "ReduxSaga/Product/ProductRedux";
+import { moneyConvert } from "util/Ultilities";
 
 const PriceAndPurchase = () => {
+  const { productDetail } = useSelector(productSelector)
   const [open, setOpen] = useState(false);
 
   const handleClose = () => {
@@ -20,16 +24,16 @@ const PriceAndPurchase = () => {
       <div className="d-flex flex-row justify-content-between">
         <div className="d-flex flex-row my-3">
           <span className="display-6 me-3 text-danger">
-            <strong>10.990.000₫</strong>
+            <strong>{moneyConvert(productDetail?.price - productDetail?.price * productDetail?.saleOff / 100)}</strong>
           </span>
           <span className="align-self-end text-secondary text-decoration-line-through">
-            11.990.000₫
+            {moneyConvert(productDetail?.price)}
           </span>
         </div>
         <div className="d-flex flex-column my-3">
           <span>Trả góp chỉ từ </span>
           <span className="">
-            <strong>1.661.000₫</strong>/tháng
+            <strong>{moneyConvert(productDetail?.price * 0.09)}</strong>/tháng
           </span>
         </div>
       </div>
@@ -108,7 +112,12 @@ const PriceAndPurchase = () => {
           <span className="fs-4">TRẢ GÓP QUA THẺ</span>
           <span className="text-capitalize">Visa/ Master Card</span>
         </Button>
-        <PurchaseModal visible={open} onClose={handleClose}/>
+        <PurchaseModal visible={open} onClose={handleClose} />
+      </div>
+      <div className="d-flex flex-column bg-light p-3 my-3">
+        <div>
+          <p>Thông số kỹ thuật</p>
+        </div>
       </div>
     </div>
   );

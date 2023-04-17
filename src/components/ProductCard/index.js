@@ -6,12 +6,12 @@ import { PRODUCT_IMAGES } from "Themes/Image"
 import { PriceBar } from "./PriceBar"
 import styles from "./ProductCard.module.scss"
 
-const ProductCard = ({ name, image, price, discount, configuration, specification, saleOff }) => {
+const ProductCard = ({ name, image, price, discount, configuration, specification, saleOff, id, ...props }) => {
   const { cpu, screenSize, ram, rom, cpuClock  } = specification
   return (
     <div className={`${styles.productCard} bg-light p-3`}>
       <div className='w-100 d-flex justify-content-center p-3'>
-        <Link to='#'>
+        <Link to={`/product-detail/${id}`} state={id}>
           <img
             src={PRODUCT_IMAGES.iphone13}
             className={`img-fluid ${styles.img}`}
