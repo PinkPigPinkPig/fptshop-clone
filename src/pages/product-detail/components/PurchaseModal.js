@@ -16,15 +16,21 @@ import phoneImg from "../../../assets/images/product-detail/product_img.webp"
 import ProductMini from "components/ProductMini/ProductMini"
 import { localStorageHelper } from "helpers"
 import { LOCAL_STORE } from "constants/system"
+import PurchaseProduct from "components/PurchaseProduct/PurchaseProduct"
+import EmptyModal from "./EmptyModal"
 
 const PurchaseModal = ({ visible, onClose }) => {
-  const [color, setColor] = useState(10)
-  const [count, setCount] = useState(0)
   const [productList, setProductList] = useState([])
+  const [changeList, setChangeList] = useState(false)
   useEffect(() => {
     const data = JSON.parse(localStorageHelper.getItem(LOCAL_STORE.CART))
     setProductList(data)
-  }, [])
+  }, [changeList])
+
+  const onDelete = () => {
+    setChangeList((prev) => !prev)
+  }
+
   const handleClickOrder = () => {
     localStorage.clear()
   }
@@ -37,23 +43,14 @@ const PurchaseModal = ({ visible, onClose }) => {
       aria-describedby="modal-modal-description"
     >
       <div
-        className="bg-white w-50 rounded-1 p-3"
+        className="bg-white w-50 rounded-1"
         style={{ height: "fit-content" }}
       >
-        <span className="fs-3">Có 1 sản phẩm trong giỏ hàng</span>
-        <div className="border-bottom border-dark my-2" />
-
-        <Box sx={{ width: "100%", display: "flex", justifyContent: "center" }}>
-          <Button
-            size="large"
-            color="error"
-            variant="contained"
-            sx={{ padding: 2, fontSize: 18 }}
-            onClick={handleClickOrder}
-          >
-            Hoàn tất đặt hàng
-          </Button>
-        </Box>
+        {productList?.length > 0 ? (
+          <PurchaseProduct productList={productList} onDelete={onDelete} />
+        ) : (
+          <EmptyModal />
+        )}
       </div>
     </Modal>
   )
