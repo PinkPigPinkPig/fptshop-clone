@@ -12,6 +12,7 @@ import {
   IconButton,
   InputBase,
   Paper,
+  Stack,
 } from "@mui/material"
 import { useEffect, useState } from "react"
 import { localStorageHelper } from "helpers"
@@ -22,7 +23,7 @@ function Header() {
   const location = useLocation()
   useEffect(() => {
     const data = JSON.parse(localStorageHelper.getItem(LOCAL_STORE.CART))
-    if(data?.length > 0) {
+    if (data?.length > 0) {
       setBadgeContent(data?.length)
     }
   }, [location])
@@ -96,8 +97,10 @@ function Header() {
         </div>
       </div>
       <div className={`container-fluid ${styles.topMenu}`}>
-        <div className="container d-flex justify-content-xl-between flex-wrap px-0 py-2">
-          {CATE_DATA.map(renderCate)}
+        <div className="container d-flex justify-content-center flex-wrap px-0 py-2">
+          <Stack direction="row" spacing={5}>
+            {CATE_DATA.map(renderCate)}
+          </Stack>
         </div>
       </div>
     </div>

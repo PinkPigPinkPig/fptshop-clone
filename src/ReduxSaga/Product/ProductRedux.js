@@ -41,6 +41,10 @@ const productRedux = createSlice({
     getProductCompareRequest: (state, action) => { },
     getProductCompareSuccess: (state, action) => { },
     getProductCompareFailed: (state, action) => { },
+
+    buyProductRequest: (state, action) => {},
+    buyProductSuccess: (state, action) => {},
+    buyProductFailed: (state, action) => {},
   }
 })
 

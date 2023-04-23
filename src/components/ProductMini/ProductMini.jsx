@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 import styles from "./ProductMini.module.scss"
 import { useState } from "react"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
@@ -16,8 +16,7 @@ import { calculatePayMoney, moneyConvert } from "util/Ultilities"
 import { localStorageHelper } from "helpers"
 import { LOCAL_STORE } from "constants/system"
 
-const ProductMini = ({ product, onDelete }) => {
-  console.log({ product })
+const ProductMini = ({ product, onDelete, onCountChange }) => {
   const [color, setColor] = useState(10)
   const [count, setCount] = useState(1)
   const handleAdd = () => {
@@ -28,11 +27,19 @@ const ProductMini = ({ product, onDelete }) => {
       setCount((prev) => prev - 1)
     }
   }
+  const handleChangePrice = (price, count, saleOff = 100) => {
+    return price * count * saleOff / 100
+  }
+  useEffect(() => {
+    const price = handleChangePrice(product?.price, count)
+    const discount = handleChangePrice(product?.price, count, product?.saleOff)
+    onCountChange && onCountChange(product?.id, count)
+  }, [count]);
   const handleDeleteFromCart = async () => {
     const data = JSON.parse(localStorageHelper.getItem(LOCAL_STORE.CART))
     const deletedData = data?.filter(item => item?.id != product?.id)
     await localStorageHelper.setItem(LOCAL_STORE.CART, deletedData)
-    onDelete && onDelete()
+    onDelete && onDelete(product?.id)
   }
   return (
     <>

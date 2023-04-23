@@ -2,53 +2,37 @@ const CATE_DATA = [
     {
         icon: 'mobile',
         title: 'ĐIỆN THOẠI',
-        cate: 'dien-thoai',
+        cate: 'dt',
     },
     {
         icon: 'laptop',
         title: 'LAPTOP',
-        cate: 'laptop',
+        cate: 'lt',
     },
     {
         icon: 'tablet',
         title: 'MÁY TÍNH BẢNG',
-        cate: 'tablet',
+        cate: 'mtb',
     },
-    {
-        icon: 'apple-whole',
-        title: 'APPLE',
-        cate: 'apple',
-    },
+  
     {
         icon: 'computer',
         title: 'PC-LINH KIỆN',
-        cate: 'linh-kien',
+        cate: 'lk',
     },
     {
         icon: 'headphones',
         title: 'PHỤ KIỆN',
-        cate: 'phu-kien',
+        cate: 'pk',
     },
     {
         icon: 'rotate-right',
-        title: 'MÁY CŨ GIA RẺ',
-        cate: 'old-device',
+        title: 'Thiết bị cũ',
+        cate: 'tbc',
     },
-    {
-        icon: 'house',
-        title: 'HÀNG GIA DỤNG',
-        route: '/list-product',
-    },
-    {
-        icon: 'sim-card',
-        title: 'SIM & THẺ',
-        route: '/list-product',
-    },
-    {
-        icon: 'tag',
-        title: 'KHUYẾN MÃI',
-        route: '/list-product',
-    },
+   
+   
+    
 ]
 
 const MENU_DATA = [
