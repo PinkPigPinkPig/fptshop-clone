@@ -13,13 +13,14 @@ export function* watchProductSaga() {
     takeLatest(ProductActions.getProductDetailRequest.type, handleDetailRequest),
     takeLatest(ProductActions.getProductCompareRequest.type, handleCompareRequest),
     takeLatest(ProductActions.buyProductRequest.type, handleBuyProductRequest),
+    takeLatest(ProductActions.getProductByCateRequest.type, handleProductListByCate),
   ])
 }
 
 function* handleSearchProduct(action) {
   try {
     console.log('vao test roi')
-    const api = () => ApiUtil.fetch(ApiConfig.SEACRCH_PRODUCT + action.payload, { method: "GET" })
+    const api = () => ApiUtil.fetch(ApiConfig.SEARCH_PRODUCT + action.payload, { method: "GET" })
     const response = yield call(api)
 
   } catch (error) {
@@ -75,18 +76,29 @@ function* handleDetailRequest(action) {
   } catch (error) {
     console.log("error", error)
   }
-} 
+}
 
 function* handleBuyProductRequest(action) {
   try {
     const { data, callback } = action.payload
-    console.log({action})
+    console.log({ action })
     const api = () => ApiUtil.fetch(ApiConfig.BUY_PRODUCT, { method: "POST", data })
     const response = yield call(api)
     console.log(response)
     const isValid = response?.code == 200
     callback && callback(isValid)
     // yield put(ProductActions.getProductDetailSuccess(response?.data))
+  } catch (error) {
+    console.log("error", error)
+  }
+}
+
+function* handleProductListByCate(action) {
+  const { categoryId } = action.payload
+  try {
+    const api = () => ApiUtil.fetch(ApiConfig.PRODUCT_BY_CATE + `?categoryId=${categoryId}&page=0&size=1&sort=string`, { method: "GET" })
+    const response = yield call(api)
+    yield put(ProductActions.getProductByCateSuccess(response?.data?.content))
   } catch (error) {
     console.log("error", error)
   }

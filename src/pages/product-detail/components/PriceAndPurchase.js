@@ -12,7 +12,7 @@ import { LOCAL_STORE } from "constants/system"
 const PriceAndPurchase = ({ product }) => {
   const { productDetail } = useSelector(productSelector)
   const [open, setOpen] = useState(false)
-
+  const specification = productDetail?.specification
   const handleClose = () => {
     setOpen(false)
   }
@@ -30,6 +30,23 @@ const PriceAndPurchase = ({ product }) => {
     setOpen(true)
   }
 
+  const createData = (field, value) => {
+    return { field, value }
+  }
+
+  const row = [
+    createData('Màn hình', `${specification?.screenSize}, ${specification?.screenTech}, ${specification?.resolution}`),
+    createData('Camera sau', specification?.cameras?.[1]?.cameraResolution),
+    createData('Camera Selfie', specification?.cameras?.[0]?.cameraResolution),
+    createData('Bộ nhớ trong', '128gb'),
+    createData('CPU', specification?.cpu),
+    createData('Dung lượng pin', specification?.battery),
+    createData('Thẻ sim'),
+    createData('Hệ điều hành', specification?.osName),
+    createData('Xuất xứ', specification?.origin),
+    createData('Thời gian ra mắt',new Date(specification?.timeRelease)),
+  ]
+console.log('row: ', row);
   return (
     <div className="col">
       <div className="d-flex flex-row justify-content-between">
