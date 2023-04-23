@@ -12,7 +12,7 @@ export function* watchProductSaga() {
     takeLatest(ProductActions.getProductWithOptionRequest.type, handleProductWithOption),
     takeLatest(ProductActions.getProductDetailRequest.type, handleDetailRequest),
     takeLatest(ProductActions.getProductCompareRequest.type, handleCompareRequest),
-
+    takeLatest(ProductActions.buyProductRequest.type, handleBuyProductRequest),
   ])
 }
 
@@ -75,5 +75,22 @@ function* handleDetailRequest(action) {
   } catch (error) {
     console.log("error", error)
   }
+} 
+
+function* handleBuyProductRequest(action) {
+  try {
+    const { data, callback } = action.payload
+    console.log({action})
+    const api = () => ApiUtil.fetch(ApiConfig.BUY_PRODUCT, { method: "POST", data })
+    const response = yield call(api)
+    console.log(response)
+    const isValid = response?.code == 200
+    callback && callback(isValid)
+    // yield put(ProductActions.getProductDetailSuccess(response?.data))
+  } catch (error) {
+    console.log("error", error)
+  }
 }
+
+
 

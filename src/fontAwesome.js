@@ -25,7 +25,8 @@ import {
   faSquare,
   faSquareCheck,
   faBorderAll,
-  faUser
+  faUser,
+  faTrash,
 } from "@fortawesome/free-solid-svg-icons"
 library.add(
   faMagnifyingGlass,
@@ -53,5 +54,6 @@ library.add(
   faSquare,
   faSquareCheck,
   faBorderAll,
-  faUser
+  faUser,
+  faTrash,
 )
