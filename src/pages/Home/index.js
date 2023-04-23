@@ -35,6 +35,8 @@ function Home() {
                     name={item?.productName}
                     specification={item?.specification}
                     saleOff={item?.saleOff}
+                    cate={item?.category?.routeKey}
+                    routeKey={item?.modelSeries}
                   />
                 </div>
               )
@@ -54,6 +56,8 @@ function Home() {
                   name={item?.productName}
                   specification={item?.specification}
                   saleOff={item?.saleOff}
+                  cate={item?.category?.routeKey}
+                  routeKey={item?.modelSeries}
                 />
               </div>
             )

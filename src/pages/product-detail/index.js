@@ -10,9 +10,9 @@ function ProductDetail() {
   const { productDetail } = useSelector(productSelector)
   const { state } = useLocation()
   const dispatch = useDispatch()
-console.log('state: ', state);
+  
   useEffect(() => {
-    dispatch(ProductActions.getProductDetailRequest(state.id))
+    dispatch(ProductActions.getProductDetailRequest(state))
   }, [dispatch, state])
 
   return (
