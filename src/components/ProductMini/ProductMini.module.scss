@@ -8,10 +8,18 @@
     height: 100%;
     width: 100%;
 }
+
 .counterButton {
-    height: 50px;
+    height: fit-content;
+    outline: none;
+    background:none;
 }
 .countInput {
-    height: 50px;
-    width: 50px;
+    height: auto;
+    width: fit-content;
+    text-align: center;
+}
+
+.countBox {
+    width: fit-content;
 }

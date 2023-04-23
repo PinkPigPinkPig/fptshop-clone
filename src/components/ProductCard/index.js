@@ -22,9 +22,7 @@ const ProductCard = ({
   const { cpu, screenSize, ram, rom, cpuClock } = specification
   const handleClickBuyNow = () => {
     navigate(`${cate}/${routeKey}`, {
-      state: {
-        id: id,
-      },
+      state: id,
     })
   }
   return (

@@ -4,6 +4,8 @@ import styles from './components/components.module.scss'
 import ListOption from "./components/ListOption";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useMemo } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { ProductActions, productSelector } from "ReduxSaga/Product/ProductRedux";
 
 const productList = [
     {
@@ -25,16 +27,23 @@ const productList = [
 ]
 
 function ListProduct(props) {
+    const { productByCate } = useSelector(productSelector)
     const location = useLocation()
     const navigate = useNavigate()
+    const dispatch = useDispatch()
+
     const id = useMemo(() => {
         return location?.state?.id
     }, [location])
+
     useEffect(() => {
-        if(!id) {
+        if (!id) {
             navigate('/404')
+        } else {
+            dispatch(ProductActions.getProductByCateRequest({ categoryId: id }))
         }
-    }, [id])
+    }, [id, navigate])
+
     return (
         <div className={`container text-center p-5 my-5 bg-light rounded-3`} style={{ minWidth: '800px' }}>
             <div className="d-flex" style={{ minWidth: '800px' }}>
@@ -50,16 +59,33 @@ function ListProduct(props) {
                         </div>
                     })}
                 </div>
-                <div className={`col ${styles.productSection}`}>
-                    <ListOption />
-                    {/* <div className={`row three-cols bg-white rounded-3`}>
+                <div className={`row ${styles.productSection}`}>
+                    {/* <ListOption />
+                    <div className={`row three-cols bg-white rounded-3`}>
                         {listProduct.map((item, index) => (
                             <div key={index} className={`col-4 my-2`}>
                                 <ProductCard />
                             </div>
                         ))}
                     </div> */}
-                </div>
+
+                        {productByCate &&
+                            productByCate?.map((item, index) => {
+                                return (
+                                     <div className="col-4" key={index}>
+                                        <ProductCard
+                                            cate={item?.category?.routeKey}
+                                            routeKey={item?.productCode?.toLowerCase()}
+                                            id={item?.id}
+                                            price={item?.price}
+                                            name={item?.productName}
+                                            specification={item?.specification}
+                                            saleOff={item?.saleOff}
+                                        />
+                                    </div>
+                                )
+                            })}
+                    </div>
 
             </div>
         </div>

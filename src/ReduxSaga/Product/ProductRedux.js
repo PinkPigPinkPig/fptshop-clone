@@ -5,7 +5,8 @@ const initialState = {
   productHomePage: [],
   productWithOption: [],
   productDetail: {},
-  productCompare: []
+  productCompare: [],
+  productByCate: []
 }
 
 const productRedux = createSlice({
@@ -41,6 +42,17 @@ const productRedux = createSlice({
     getProductCompareRequest: (state, action) => { },
     getProductCompareSuccess: (state, action) => { },
     getProductCompareFailed: (state, action) => { },
+
+    buyProductRequest: (state, action) => {},
+    buyProductSuccess: (state, action) => {},
+    buyProductFailed: (state, action) => {},
+    
+    getProductByCateRequest: (state, action) => {},
+    getProductByCateSuccess: (state, action) => {
+      state.productByCate = action.payload
+    },
+    getProductByCateFailed: (state, action) => {},
+
   }
 })
 
