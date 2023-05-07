@@ -13,10 +13,6 @@ const productRedux = createSlice({
   name: 'productRedux',
   initialState,
   reducers: {
-    getSearchProductRequest: (state, action) => { },
-    getSearchProductSuccess: (state, action) => { },
-    getSearchProductFailed: (state, action) => { },
-
     getAllCategoryRequest: (state, action) => { },
     getAllCategorySuccess: (state, action) => {
       state.category = action.payload
@@ -52,6 +48,10 @@ const productRedux = createSlice({
       state.productByCate = action.payload
     },
     getProductByCateFailed: (state, action) => {},
+
+    searchProductRequest: (state, action) => {},
+
+    getSuggestSearchRequest: (state, action) => {},
 
   }
 })

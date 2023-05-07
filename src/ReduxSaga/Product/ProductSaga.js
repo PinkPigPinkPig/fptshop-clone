@@ -6,7 +6,6 @@ import { ProductActions } from "./ProductRedux"
 export function* watchProductSaga() {
   console.log('watchProductSaga')
   yield all([
-    takeLatest(ProductActions.getSearchProductFailed.type, handleSearchProduct),
     takeLatest(ProductActions.getAllCategoryRequest.type, handleGetCategory),
     takeLatest(ProductActions.getProductHomePageRequest.type, handleProductHomePage),
     takeLatest(ProductActions.getProductWithOptionRequest.type, handleProductWithOption),
@@ -14,18 +13,9 @@ export function* watchProductSaga() {
     takeLatest(ProductActions.getProductCompareRequest.type, handleCompareRequest),
     takeLatest(ProductActions.buyProductRequest.type, handleBuyProductRequest),
     takeLatest(ProductActions.getProductByCateRequest.type, handleProductListByCate),
+    takeLatest(ProductActions.searchProductRequest.type, handleSearchProduct),
+    takeLatest(ProductActions.getSuggestSearchRequest.type, handleProductListByCate),
   ])
-}
-
-function* handleSearchProduct(action) {
-  try {
-    console.log('vao test roi')
-    const api = () => ApiUtil.fetch(ApiConfig.SEARCH_PRODUCT + action.payload, { method: "GET" })
-    const response = yield call(api)
-
-  } catch (error) {
-    console.log("error", error)
-  }
 }
 
 function* handleGetCategory(action) {
@@ -99,6 +89,22 @@ function* handleProductListByCate(action) {
     const api = () => ApiUtil.fetch(ApiConfig.PRODUCT_BY_CATE + `?categoryId=${categoryId}&page=0&size=1&sort=string`, { method: "GET" })
     const response = yield call(api)
     yield put(ProductActions.getProductByCateSuccess(response?.data?.content))
+  } catch (error) {
+    console.log("error", error)
+  }
+}
+
+function* handleSearchProduct(action) {
+  const { params, callback } = action.payload
+  try {
+    const api = () =>
+      ApiUtil.fetch(ApiConfig.SEARCH_PRODUCT, {
+        method: "GET",
+        params,
+      })
+    const response = yield call(api)
+    const isSuccess = response?.code === 200
+    callback && callback(response?.data)
   } catch (error) {
     console.log("error", error)
   }
