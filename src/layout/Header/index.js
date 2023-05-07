@@ -37,17 +37,6 @@ function Header() {
   const [searchText, setSearchText] = useState("")
   const inputRef = useRef(null)
 
-  const handleInputChange = (event) => {
-    setSearchText(event.target.value)
-    setAnchorEl(event.target)
-  }
-
-  const handleClose = () => {
-    setAnchorEl(null)
-  }
-
-  const open = Boolean(anchorEl)
-
   const renderCate = (item, index) => {
     const data = { id: 123, name: "example" }
     return (
@@ -61,10 +50,6 @@ function Header() {
         <span className="ms-1">{item.title}</span>
       </Link>
     )
-  }
-
-  const popoverStyle = {
-    width: inputRef.current ? inputRef.current.clientWidth : null,
   }
 
   return (
@@ -109,11 +94,13 @@ function Header() {
                 renderInput={(params) => (
                   <TextField
                     {...params}
+                    // variant="standard"
                     InputProps={{
                       ...params.InputProps,
                       type: "search",
                       disableUnderline: true,
                     }}
+                    sx={{borderRadius: 0}}
                   />
                 )}
               />
