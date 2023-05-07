@@ -55,10 +55,10 @@ function Header() {
         to={`/product/${item.cate}`}
         state={data}
         key={index}
-        className='text-decoration-none text-white'
+        className="text-decoration-none text-white"
       >
         <FontAwesomeIcon icon={item.icon} />
-        <span className='ms-1'>{item.title}</span>
+        <span className="ms-1">{item.title}</span>
       </Link>
     )
   }
@@ -68,15 +68,15 @@ function Header() {
   }
 
   return (
-    <div className='container-fluid header position-static px-0'>
+    <div className="container-fluid header position-static px-0">
       <div className={`container-fluid ${styles.topBar} pt-3 pb-2`}>
-        <div className='container d-flex align-items-center justify-content-between'>
-          <a href='/'>
-            <img className={`${styles.logo}`} src={logoImg} alt='' />
+        <div className="container d-flex align-items-center justify-content-between">
+          <a href="/">
+            <img className={`${styles.logo}`} src={logoImg} alt="" />
           </a>
-          <div className='search-box w-50'>
+          <div className="search-box w-50">
             <Paper
-              component='form'
+              component="form"
               sx={{
                 p: "2px 4px",
                 display: "flex",
@@ -94,9 +94,17 @@ function Header() {
               /> */}
               <Autocomplete
                 freeSolo
-                id='free-solo-2-demo'
+                id="free-solo-2-demo"
                 disableClearable
-                options={['iphone', 'samsumg', 'apple'].map((option) => option)}
+                options={[
+                  "iphone 13",
+                  "iphone 14",
+                  "iphone 13 promax",
+                  "iphone 14 promax",
+                  "iphone 13 pro",
+                  "iphone 12 pro",
+                  "iphone 14 pro",
+                ].map((option) => option)}
                 fullWidth
                 renderInput={(params) => (
                   <TextField
@@ -104,44 +112,44 @@ function Header() {
                     InputProps={{
                       ...params.InputProps,
                       type: "search",
-                      disableUnderline: true
+                      disableUnderline: true,
                     }}
                   />
                 )}
               />
-              <IconButton type='button' sx={{ p: "15px" }} aria-label='search'>
+              <IconButton type="button" sx={{ p: "15px" }} aria-label="search">
                 <SearchIcon />
               </IconButton>
             </Paper>
           </div>
-          <div className='d-flex justify-content-between'>
+          <div className="d-flex justify-content-between">
             <Authentication
               children={
                 <Link
-                  to='#'
-                  className='d-flex flex-column align-items-center text-decoration-none text-white px-2 pointer-event'
+                  to="#"
+                  className="d-flex flex-column align-items-center text-decoration-none text-white px-2 pointer-event"
                 >
-                  <FontAwesomeIcon className='fs-4' icon='circle-user' />
+                  <FontAwesomeIcon className="fs-4" icon="circle-user" />
 
-                  <span className='mt-1'>Tài khoản của tôi</span>
+                  <span className="mt-1">Tài khoản của tôi</span>
                 </Link>
               }
             />
             <Link
-              to='/cart'
-              className='d-flex flex-column align-items-center text-decoration-none text-white px-2'
+              to="/cart"
+              className="d-flex flex-column align-items-center text-decoration-none text-white px-2"
             >
-              <Badge badgeContent={badgeContent} color='primary'>
-                <FontAwesomeIcon className='fs-4' icon='cart-shopping' />
+              <Badge badgeContent={badgeContent} color="primary">
+                <FontAwesomeIcon className="fs-4" icon="cart-shopping" />
               </Badge>
-              <span className='mt-1'>Giỏ hàng</span>
+              <span className="mt-1">Giỏ hàng</span>
             </Link>
           </div>
         </div>
       </div>
       <div className={`container-fluid ${styles.topMenu}`}>
-        <div className='container d-flex justify-content-center flex-wrap px-0 py-2'>
-          <Stack direction='row' spacing={5}>
+        <div className="container d-flex justify-content-center flex-wrap px-0 py-2">
+          <Stack direction="row" spacing={5}>
             {CATE_DATA.map(renderCate)}
           </Stack>
         </div>
