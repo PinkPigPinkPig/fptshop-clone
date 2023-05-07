@@ -40,7 +40,6 @@ const PurchaseProduct = ({ productList, onDelete }) => {
   const {
     control,
     getValues,
-    formState,
     formState: { errors },
     handleSubmit,
   } = methods
@@ -101,6 +100,9 @@ const PurchaseProduct = ({ productList, onDelete }) => {
         callback: (isValid) => {
           setIsDoneOrder(true)
           setIsOrderSuccess(isValid)
+          if(isValid) {
+            localStorageHelper.removeItem(LOCAL_STORE.CART)
+          }
         },
       })
     )
