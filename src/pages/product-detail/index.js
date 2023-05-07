@@ -25,10 +25,10 @@ function ProductDetail() {
             </span>
             <span className="align-self-end text-secondary">{`(No.${Math.floor(productDetail?.createdTime)})`}</span>
           </div>
-          <div className="d-flex flex-row-reverse col-6 my-3">
+          {/* <div className="d-flex flex-row-reverse col-6 my-3">
             <span>227 đánh giá | 323 Hỏi & đáp | So sánh</span>
             <span className="me-2">5 sao</span>
-          </div>
+          </div> */}
         </div>
 
         <div className="row">

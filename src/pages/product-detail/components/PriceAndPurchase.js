@@ -128,7 +128,7 @@ console.log('row: ', row);
       >
         <span className="fs-4">MUA NGAY</span>
       </Button>
-      <div className="d-flex justify-content-between">
+      {/* <div className="d-flex justify-content-between">
         <Button
           variant="contained"
           className={`${styles.buttonHeight} ${styles.buttonWidth} d-flex flex-column`}
@@ -144,7 +144,7 @@ console.log('row: ', row);
           <span className="text-capitalize">Visa/ Master Card</span>
         </Button>
         {open && <PurchaseModal visible={open} onClose={handleClose} />}
-      </div>
+      </div> */}
       <div className="d-flex flex-column bg-light p-3 my-3">
         <div>
           <p>Thông số kỹ thuật</p>
