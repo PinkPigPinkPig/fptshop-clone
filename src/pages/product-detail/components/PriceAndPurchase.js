@@ -49,8 +49,8 @@ const PriceAndPurchase = ({ product }) => {
 console.log('row: ', row);
   return (
     <div className="col">
-      <div className="d-flex flex-row justify-content-between">
-        <div className="d-flex flex-row my-3">
+      <div className="d-flex flex-row">
+        <div className="d-flex w-100 flex-row my-3 justify-content-between">
           <span className="display-6 me-3 text-danger">
             <strong>
               {moneyConvert(
@@ -59,14 +59,8 @@ console.log('row: ', row);
               )}
             </strong>
           </span>
-          <span className="align-self-end text-secondary text-decoration-line-through">
+          <span className="align-self-end text-secondary text-decoration-line-through fs-4">
             {moneyConvert(productDetail?.price)}
-          </span>
-        </div>
-        <div className="d-flex flex-column my-3">
-          <span>Trả góp chỉ từ </span>
-          <span className="">
-            <strong>{moneyConvert(productDetail?.price * 0.09)}</strong>/tháng
           </span>
         </div>
       </div>
