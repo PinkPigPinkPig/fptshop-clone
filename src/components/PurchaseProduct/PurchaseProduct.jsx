@@ -90,8 +90,8 @@ const PurchaseProduct = ({ productList, onDelete }) => {
     const data = {
       productIds: newArr,
       ...formValue,
-      paymentMethod: "cash",
-      customerId: 1,
+      paymentMethod: 1,
+      // customerId: 1,
     }
     console.log({ data })
     dispatch(
