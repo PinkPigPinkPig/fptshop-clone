@@ -11,7 +11,7 @@ const routes = [
     {path: '/product/:category', component: ListProduct, background: false},
     {path: '/:category/:product', component: ProductDetail, background: false},
     {path: '/cart', component: Cart, background: false},
-    {path: '/search', component: Search, background: false},
+    {path: '/search/:text', component: Search, background: false},
     {path: '*', component: NotFound, background: false},
     
 ]
