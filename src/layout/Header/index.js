@@ -3,13 +3,14 @@ import logoImg from "../../assets/images/logo.png"
 import styles from "./header.module.scss"
 import SearchIcon from "@mui/icons-material/Search"
 import { MENU_DATA, CATE_DATA } from "../helper"
-import { Link, useLocation } from "react-router-dom"
+import { Link, useLocation, useNavigate } from "react-router-dom"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import {
   Autocomplete,
   Badge,
   Box,
   Button,
+  CircularProgress,
   Divider,
   IconButton,
   InputBase,
@@ -19,13 +20,26 @@ import {
   TextField,
   Typography,
 } from "@mui/material"
-import { useEffect, useRef, useState } from "react"
+import { Fragment, useCallback, useEffect, useRef, useState } from "react"
 import { localStorageHelper } from "helpers"
 import { LOCAL_STORE } from "constants/system"
+import { useDispatch } from "react-redux"
+import { ProductActions } from "ReduxSaga/Product/ProductRedux"
+import { debounce } from "lodash"
 
 function Header() {
   const [badgeContent, setBadgeContent] = useState(0)
+  const [open, setOpen] = useState(false)
+  const [searchTerm, setSearchTerm] = useState("")
+  const [suggestions, setSuggestions] = useState([])
+  const [debouncedFetchSuggestions, setDebouncedFetchSuggestions] =
+    useState(null)
+  const loading = open && suggestions.length === 0
   const location = useLocation()
+  const navigate = useNavigate()
+
+  const dispatch = useDispatch()
+
   useEffect(() => {
     const data = JSON.parse(localStorageHelper.getItem(LOCAL_STORE.CART))
     if (data?.length > 0) {
@@ -33,9 +47,40 @@ function Header() {
     }
   }, [location])
 
-  const [anchorEl, setAnchorEl] = useState(null)
-  const [searchText, setSearchText] = useState("")
-  const inputRef = useRef(null)
+  useEffect(() => {
+    if (!open) {
+      setSuggestions([])
+    }
+  }, [open])
+
+  const fetchSuggestions = useCallback(async (searchTerm) => {
+    if (searchTerm) {
+      dispatch(
+        ProductActions.getSuggestSearchRequest({
+          data: {
+            textSearch: searchTerm,
+          },
+          callback: (res) => {
+            if (res) {
+              setSuggestions(res)
+            } else {
+              setSuggestions([])
+            }
+          },
+        })
+      )
+    } else {
+      setSuggestions([])
+    }
+  }, [])
+
+  useEffect(() => {
+    const debounced = debounce(fetchSuggestions, 500)
+    setDebouncedFetchSuggestions(() => debounced)
+    return () => {
+      debounced.cancel()
+    }
+  }, [fetchSuggestions])
 
   const renderCate = (item, index) => {
     const data = { id: 123, name: "example" }
@@ -50,6 +95,19 @@ function Header() {
         <span className="ms-1">{item.title}</span>
       </Link>
     )
+  }
+
+  const handleSearch = () => {
+    if (searchTerm) {
+      navigate(`/search/${handleSearchText(searchTerm)}`, {
+        state: { searchText: searchTerm },
+      })
+      setOpen(false)
+    }
+  }
+
+  const handleSearchText = (searchText) => {
+    return searchText?.toLowerCase()?.split(" ")?.join("-")
   }
 
   return (
@@ -70,26 +128,44 @@ function Header() {
                 padding: 0,
               }}
             >
-              {/* <InputBase
-                sx={{ ml: 1, flex: 1 }}
-                placeholder='Nhập tên điện thoại, máy tính, phụ kiện... cần tìm'
-                inputProps={{ "aria-label": "search google maps" }}
-                onChange={handleInputChange}
-                inputRef={inputRef}
-              /> */}
               <Autocomplete
                 freeSolo
                 id="free-solo-2-demo"
                 disableClearable
-                options={[
-                  "iphone 13",
-                  "iphone 14",
-                  "iphone 13 promax",
-                  "iphone 14 promax",
-                  "iphone 13 pro",
-                  "iphone 12 pro",
-                  "iphone 14 pro",
-                ].map((option) => option)}
+                open={open}
+                onKeyDown={(event) => {
+                  if (event.key === "Enter") {
+                    handleSearch()
+                  }
+                }}
+                onOpen={() => {
+                  setOpen(true)
+                }}
+                onClose={() => {
+                  setOpen(false)
+                }}
+                onInputChange={(event, value) => {
+                  setSearchTerm(value)
+                  debouncedFetchSuggestions(value)
+                }}
+                options={suggestions.map((option) => option?.productName)}
+                renderOption={(props, option) => {
+                  console.log(props, option)
+                  return (
+                    <li
+                      {...props}
+                      onClick={() => {
+                        navigate(`/search/${handleSearchText(option)}`, {
+                          state: { searchText: option },
+                        })
+                        setOpen(false)
+                      }}
+                    >
+                      <Typography>{option}</Typography>
+                    </li>
+                  )
+                }}
+                loading={loading}
                 fullWidth
                 renderInput={(params) => (
                   <TextField
@@ -99,12 +175,20 @@ function Header() {
                       ...params.InputProps,
                       type: "search",
                       disableUnderline: true,
+                      endAdornment: (
+                        <Fragment>
+                          {loading ? (
+                            <CircularProgress color="inherit" size={20} />
+                          ) : null}
+                          {params.InputProps.endAdornment}
+                        </Fragment>
+                      ),
                     }}
-                    sx={{borderRadius: 0}}
+                    sx={{ borderRadius: 0 }}
                   />
                 )}
               />
-              <IconButton type="button" sx={{ p: "15px" }} aria-label="search">
+              <IconButton type="button" sx={{ p: "15px" }} aria-label="search" onClick={handleSearch}>
                 <SearchIcon />
               </IconButton>
             </Paper>

@@ -14,7 +14,7 @@ export function* watchProductSaga() {
     takeLatest(ProductActions.buyProductRequest.type, handleBuyProductRequest),
     takeLatest(ProductActions.getProductByCateRequest.type, handleProductListByCate),
     takeLatest(ProductActions.searchProductRequest.type, handleSearchProduct),
-    takeLatest(ProductActions.getSuggestSearchRequest.type, handleProductListByCate),
+    takeLatest(ProductActions.getSuggestSearchRequest.type, handleGetSuggestSearch),
   ])
 }
 
@@ -101,6 +101,23 @@ function* handleSearchProduct(action) {
       ApiUtil.fetch(ApiConfig.SEARCH_PRODUCT, {
         method: "GET",
         params,
+      })
+    const response = yield call(api)
+    const isSuccess = response?.code === 200
+    callback && callback(response?.data)
+  } catch (error) {
+    console.log("error", error)
+  }
+}
+
+function* handleGetSuggestSearch(action) {
+  const { data, callback } = action.payload
+
+  try {
+    const api = () =>
+      ApiUtil.fetch(ApiConfig.GET_SUGGEST_SEARCH, {
+        method: "POST",
+        data,
       })
     const response = yield call(api)
     const isSuccess = response?.code === 200

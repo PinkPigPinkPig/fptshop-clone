@@ -7,36 +7,53 @@ import { ProductActions } from "ReduxSaga/Product/ProductRedux"
 
 const Search = () => {
   const [productList, setProductList] = useState([])
+  const [searchText, setSearchText] = useState("")
 
   const dispatch = useDispatch()
   const location = useLocation()
 
   useEffect(() => {
-    dispatch(
-      ProductActions.searchProductRequest({
-        params: {
-          textSearch: "iphone",
-        },
-        callback: (res) => {
-          console.log({ res })
-          if (res?.content) {
-            setProductList(res?.content)
-          }
-        },
-      })
-    )
-  }, [])
+    const searchText = location?.state?.searchText
+    console.log(location)
+    if (searchText) {
+      setSearchText(searchText)
+      dispatch(
+        ProductActions.searchProductRequest({
+          params: {
+            textSearch: searchText,
+          },
+          callback: (res) => {
+            console.log({ res })
+            if (res?.content) {
+              setProductList(res?.content)
+            } else {
+              setProductList([])
+            }
+          },
+        })
+      )
+    } else {
+      setProductList([])
+    }
+  }, [location])
+  console.log(searchText)
   return (
     <Box>
-      <Typography variant='h5'>
-        Tìm thấy 13 kết quả với từ khóa "iphone 14"
-      </Typography>
-      <div className='mt-4 bg-light py-2'>
-        <div className='row'>
-          {productList &&
-            productList?.map((item, index) => {
+      {productList?.length > 0 ? (
+        <Typography variant="h5">
+          Tìm thấy {productList?.length} kết quả với từ khóa "{searchText}"
+        </Typography>
+      ) : (
+        <Typography variant="h5" sx={{ marginBottom: 30 }}>
+          Không tìm thấy kết quả phù hợp
+        </Typography>
+      )}
+      {productList?.length > 0 && (
+        <div className="mt-4 bg-light py-2">
+          <div className="row">
+            {productList?.map((item, index) => {
               return (
-                <div className='col-3' key={index}>
+                <div className="col-3" key={index}>
                   <ProductCard
                     cate={item?.category?.routeKey}
                     routeKey={item?.productCode?.toLowerCase()}
@@ -49,8 +66,9 @@ const Search = () => {
                 </div>
               )
             })}
+          </div>
         </div>
-      </div>
+      )}
     </Box>
   )
 }

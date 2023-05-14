@@ -9,4 +9,5 @@ export default {
     PRODUCT_DETAIL: '/api/v1/selling/product-detail/',
     PRODUCT_COMPARE: '/api/v1/selling/product-compare',
     PRODUCT_BY_CATE: '/api/v1/selling/get-product-by-category',
+    GET_SUGGEST_SEARCH: '/api/v1/selling/suggest-search',
 }
