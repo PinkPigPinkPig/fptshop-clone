@@ -24,6 +24,10 @@ import OrderStatusModal from "./OrderStatusModal"
 import { useNavigate } from "react-router-dom"
 import { localStorageHelper } from "helpers"
 import { LOCAL_STORE } from "constants/system"
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs"
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider"
+import { DatePicker } from "@mui/x-date-pickers/DatePicker"
+import dayjs from "dayjs"
 
 const PurchaseProduct = ({ productList, onDelete }) => {
   const [totalMoney, setTotalMoney] = useState(0)
@@ -72,8 +76,8 @@ const PurchaseProduct = ({ productList, onDelete }) => {
 
   const handleCloseOrderModal = () => {
     setIsDoneOrder(false)
-    if(isOrderSuccess) {
-      navigate('/')
+    if (isOrderSuccess) {
+      navigate("/")
       localStorageHelper.removeItem(LOCAL_STORE.CART)
     }
     setIsOrderSuccess(false)
@@ -81,6 +85,7 @@ const PurchaseProduct = ({ productList, onDelete }) => {
 
   const handleBuyProduct = () => {
     const formValue = getValues()
+    console.log({ formValue })
     const newArr = productCartList?.map((item) => {
       return {
         productId: item?.productId,
@@ -90,6 +95,7 @@ const PurchaseProduct = ({ productList, onDelete }) => {
     const data = {
       productIds: newArr,
       ...formValue,
+      recipientDob: dayjs(formValue?.recipientDob).format("YYYY-MM-DD"),
       paymentMethod: 1,
       // customerId: 1,
     }
@@ -100,7 +106,7 @@ const PurchaseProduct = ({ productList, onDelete }) => {
         callback: (isValid) => {
           setIsDoneOrder(true)
           setIsOrderSuccess(isValid)
-          if(isValid) {
+          if (isValid) {
             localStorageHelper.removeItem(LOCAL_STORE.CART)
           }
         },
@@ -146,8 +152,8 @@ const PurchaseProduct = ({ productList, onDelete }) => {
             )
           })}
         </div>
-        <Stack justifyContent="space-between" direction="row">
-          <Box>
+        <Stack justifyContent="flex-end" direction="row">
+          {/* <Box>
             <Typography variant="h6" className="fw-bold mb-3">
               Mã giảm giá
             </Typography>
@@ -157,7 +163,7 @@ const PurchaseProduct = ({ productList, onDelete }) => {
                 Áp dụng
               </Button>
             </Stack>
-          </Box>
+          </Box> */}
           <Box>
             <Stack spacing={10} justifyContent="space-between" direction="row">
               <Stack spacing={2} direction="column">
@@ -179,31 +185,31 @@ const PurchaseProduct = ({ productList, onDelete }) => {
         <Box>
           <FormProvider methods={methods}>
             <FormControl>
-              <RadioGroup
+              {/* <RadioGroup
                 row
                 aria-labelledby="demo-row-radio-buttons-group-label"
                 name="row-radio-buttons-group"
               >
                 <FormControlLabel value="0" control={<Radio />} label="Anh" />
                 <FormControlLabel value="1" control={<Radio />} label="Chị" />
-              </RadioGroup>
+              </RadioGroup> */}
+
               <Stack spacing={3}>
                 <Stack direction="row" spacing={2}>
                   <Controller
                     control={control}
-                    name="recipientName"
+                    name="recipientEmail"
                     rules={{ required: true }}
                     render={({
                       field: { onChange, onBlur, value, name, ref },
                     }) => (
                       <TextField
-                        // name={name}
-                        placeholder="Nhập họ và tên"
+                        placeholder="Nhập địa chỉ email"
                         size="small"
                         onBlur={onBlur} // notify when input is touched
                         onChange={onChange} // send value to hook form
-                        error={!isEmpty(errors?.["recipientName"])}
-                        helperText={errors?.["recipientName"]?.message}
+                        error={!isEmpty(errors?.["recipientEmail"])}
+                        helperText={errors?.["recipientEmail"]?.message}
                       />
                     )}
                   />
@@ -226,6 +232,64 @@ const PurchaseProduct = ({ productList, onDelete }) => {
                     )}
                   />
                 </Stack>
+                <Stack direction="row" spacing={2}>
+                  <Controller
+                    control={control}
+                    name="recipientName"
+                    rules={{ required: true }}
+                    render={({
+                      field: { onChange, onBlur, value, name, ref },
+                    }) => (
+                      <TextField
+                        // name={name}
+                        placeholder="Nhập họ và tên"
+                        size="small"
+                        onBlur={onBlur} // notify when input is touched
+                        onChange={onChange} // send value to hook form
+                        error={!isEmpty(errors?.["recipientName"])}
+                        helperText={errors?.["recipientName"]?.message}
+                      />
+                    )}
+                  />
+                  <LocalizationProvider dateAdapter={AdapterDayjs}>
+                    <Controller
+                      control={control}
+                      name="recipientDob"
+                      rules={{
+                        validate: {
+                          min: (date) => {
+                            const today = dayjs()
+                            return date < today
+                              ? date
+                              : "Ngày sinh không phù hợp"
+                          },
+                        },
+                      }}
+                      render={({
+                        field: { onChange, onBlur, value, name, ref },
+                        formState,
+                      }) => (
+                        <DatePicker
+                          label="Ngày sinh"
+                          format="YYYY/MM/DD"
+                          slotProps={{
+                            textField: {
+                              size: "small",
+                              error: !isEmpty(errors?.["recipientDob"]),
+                              helperText: errors?.["recipientDob"]?.message,
+                            },
+                          }}
+                          value={value}
+                          onChange={onChange}
+                          error={!isEmpty(errors?.["recipientDob"])}
+                          helperText={errors?.["recipientDob"]?.message}
+                          renderInput={(params) => <TextField {...params} />}
+                        />
+                      )}
+                    />
+                  </LocalizationProvider>
+                </Stack>
+
                 <Controller
                   control={control}
                   name="recipientAddress"
@@ -262,7 +326,11 @@ const PurchaseProduct = ({ productList, onDelete }) => {
           </Button>
         </Box>
       </div>
-      <OrderStatusModal visible={isDoneOrder} orderStatus={isOrderSuccess} onClose={handleCloseOrderModal}/>
+      <OrderStatusModal
+        visible={isDoneOrder}
+        orderStatus={isOrderSuccess}
+        onClose={handleCloseOrderModal}
+      />
     </>
   )
 }

@@ -83,7 +83,7 @@ function Header() {
   }, [fetchSuggestions])
 
   const renderCate = (item, index) => {
-    const data = { id: 123, name: "example" }
+    const data = { id: item?.id, name: "example" }
     return (
       <Link
         to={`/product/${item.cate}`}
