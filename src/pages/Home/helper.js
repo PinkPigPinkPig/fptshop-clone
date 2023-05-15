@@ -69,6 +69,16 @@ const CATE_DATA = [
     
 ]
 
+const CATE_TITLE = {
+    DT: "ĐIỆN THOẠI",
+    LT: 'LAPTOP',
+    MTB: 'MÁY TÍNH BẢNG',
+    PCLK: 'PC-LINH KIỆN',
+    PK: 'PHỤ KIỆN',
+    TBC: 'THIẾT BỊ CŨ',
+}
+
 export {
     CATE_DATA,
+    CATE_TITLE,
 }

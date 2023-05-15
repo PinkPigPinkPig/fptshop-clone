@@ -32,6 +32,8 @@ function ListProduct(props) {
     const navigate = useNavigate()
     const dispatch = useDispatch()
 
+    console.log({location})
+
     const id = useMemo(() => {
         return location?.state?.id
     }, [location])

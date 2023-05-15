@@ -18,7 +18,7 @@ const PriceAndPurchase = ({ product }) => {
   }
 
   const handleClickBuyNow = async () => {
-    setOpen(true)
+    // setOpen(true)
     let data = JSON.parse(localStorageHelper.getItem(LOCAL_STORE.CART))
     if (!data) {
       data = []
@@ -46,7 +46,6 @@ const PriceAndPurchase = ({ product }) => {
     createData('Xuất xứ', specification?.origin),
     createData('Thời gian ra mắt',new Date(specification?.timeRelease)),
   ]
-console.log('row: ', row);
   return (
     <div className="col">
       <div className="d-flex flex-row">
@@ -137,8 +136,9 @@ console.log('row: ', row);
           <span className="fs-4">TRẢ GÓP QUA THẺ</span>
           <span className="text-capitalize">Visa/ Master Card</span>
         </Button>
-        {open && <PurchaseModal visible={open} onClose={handleClose} />}
+        
       </div> */}
+      {open && <PurchaseModal visible={open} onClose={handleClose} />}
       <div className="d-flex flex-column bg-light p-3 my-3">
         <div>
           <p>Thông số kỹ thuật</p>

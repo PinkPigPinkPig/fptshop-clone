@@ -9,6 +9,7 @@ import {
   Box,
   Divider,
   Stack,
+  IconButton,
 } from "@mui/material"
 import styles from "../productDetail.module.scss"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
@@ -18,6 +19,7 @@ import { localStorageHelper } from "helpers"
 import { LOCAL_STORE } from "constants/system"
 import PurchaseProduct from "components/PurchaseProduct/PurchaseProduct"
 import EmptyModal from "./EmptyModal"
+import CloseIcon from '@mui/icons-material/Close';
 
 const PurchaseModal = ({ visible, onClose }) => {
   const [productList, setProductList] = useState([])
@@ -43,9 +45,12 @@ const PurchaseModal = ({ visible, onClose }) => {
       aria-describedby="modal-modal-description"
     >
       <div
-        className="bg-white w-50 rounded-1"
+        className="bg-white w-50 rounded-1 position-relative"
         style={{ height: "fit-content" }}
       >
+        <IconButton className="position-absolute top-0 end-0" onClick={onClose}>
+          <CloseIcon/>
+        </IconButton>
         {productList?.length > 0 ? (
           <PurchaseProduct productList={productList} onDelete={onDelete} />
         ) : (
