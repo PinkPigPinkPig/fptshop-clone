@@ -84,10 +84,11 @@ function* handleBuyProductRequest(action) {
 }
 
 function* handleProductListByCate(action) {
-  const { categoryId } = action.payload
+  const { params, callback } = action.payload
   try {
-    const api = () => ApiUtil.fetch(ApiConfig.PRODUCT_BY_CATE + `?categoryId=${categoryId}&page=0&size=1&sort=string`, { method: "GET" })
+    const api = () => ApiUtil.fetch(ApiConfig.PRODUCT_BY_CATE, { method: "GET", params })
     const response = yield call(api)
+    callback(response?.data)
     yield put(ProductActions.getProductByCateSuccess(response?.data?.content))
   } catch (error) {
     console.log("error", error)
