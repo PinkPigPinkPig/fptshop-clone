@@ -12,7 +12,7 @@ import { CATE_TITLE } from "./helper"
 import Slider from "react-slick"
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
-import './styles.css'
+import "./styles.css"
 
 function Home() {
   const { productHomePage } = useSelector(productSelector)
@@ -48,18 +48,22 @@ function Home() {
               productHomePage?.[b]?.length - productHomePage?.[a]?.length
           )
           ?.map((key, index) => {
-            let total = productHomePage?.[key]?.length < 4 ? productHomePage?.[key]?.length : 4
+            let total =
+              productHomePage?.[key]?.length < 4
+                ? productHomePage?.[key]?.length
+                : 4
             return (
               <div className="mt-4 bg-light py-2">
                 <span className="fs-4 fw-bold mx-4 mt-2">
                   {CATE_TITLE[key]}
                 </span>
                 <div className="row">
-                  <Slider {...settings } slidesToShow={total}>
+                  <Slider {...settings} slidesToShow={total}>
                     {productHomePage?.[key]?.map((item, index) => {
                       return (
                         <div className="col-3" key={index}>
                           <ProductCard
+                            thumbnail={item?.thumbnail}
                             cate={item?.category?.routeKey}
                             routeKey={item?.productCode?.toLowerCase()}
                             id={item?.id}

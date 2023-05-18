@@ -7,6 +7,7 @@ import { PriceBar } from "./PriceBar"
 import styles from "./ProductCard.module.scss"
 
 const ProductCard = ({
+  thumbnail,
   name,
   image,
   price,
@@ -30,7 +31,7 @@ const ProductCard = ({
       <div className="w-100 d-flex justify-content-center p-3">
         <Link to={`/${cate}/${routeKey}`} state={id}>
           <img
-            src={PRODUCT_IMAGES.iphone13}
+            src={thumbnail || PRODUCT_IMAGES.iphone13}
             className={`img-fluid ${styles.img}`}
             alt=""
           />

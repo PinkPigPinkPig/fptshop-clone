@@ -1,16 +1,48 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import phoneImg from "../../../assets/images/product-detail/product_img.webp";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useSelector } from "react-redux";
 import { productSelector } from "ReduxSaga/Product/ProductRedux";
+import Slider from "react-slick"
+import "slick-carousel/slick/slick.css"
+import "slick-carousel/slick/slick-theme.css"
+import { isEmpty } from "lodash";
 
 const ProductPreview = () => {
   const { productDetail } = useSelector(productSelector)
   const specification = productDetail?.specification
+  const [imageList, setImageList] = useState([phoneImg, phoneImg, phoneImg])
+
+  useEffect(() => {
+    if(!isEmpty(productDetail)) {
+      const {images} = productDetail
+      const data = images?.map(item => item?.imageLink)
+      setImageList(data)
+    }
+  }, [productDetail])
+
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToScroll: 1,
+    slidesToShow: 1,
+    arrows: false,
+    autoplay: true,
+    autoplaySpeed: 3000,
+    cssEase: "linear"
+  }
 
   return (
-    <div className="col">
-      <img src={phoneImg} alt="" className="mb-3 w-100" />
+    <div className="col-6">
+      <div className="w-100 mb-5">
+        <Slider {...settings} className="w-100" >
+          {imageList?.map((img, index) => {
+            return <img key={index} src={img} alt="" className="w-100" height={424} style={{objectFit: 'contain', width: 'auto'}} />
+          })}
+        </Slider>
+      </div>
+      {/* <img src={phoneImg} alt="" className="mb-3 w-100" /> */}
       <div className="d-flex flex-column bg-light p-3 ">
         <div className="mb-3">
           <FontAwesomeIcon icon="mobile" className="me-1" />
