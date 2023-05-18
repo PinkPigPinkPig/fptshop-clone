@@ -29,4 +29,4 @@ const ListCate = () => {
   return <div className="row m-0">{category && category?.map(renderCate)}</div>;
 };
 
-export default ListCate;
+export default ListCate

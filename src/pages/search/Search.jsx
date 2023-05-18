@@ -55,6 +55,7 @@ const Search = () => {
               return (
                 <div className="col-3" key={index}>
                   <ProductCard
+                    thumbnail={item?.category?.thumbnail}
                     cate={item?.category?.routeKey}
                     routeKey={item?.productCode?.toLowerCase()}
                     id={item?.id}
