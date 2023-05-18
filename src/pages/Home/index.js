@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { Button } from "@mui/material"
+import { Button, Skeleton } from "@mui/material"
 import ProductCard from "components/ProductCard"
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
@@ -37,11 +37,15 @@ function Home() {
 
   return (
     <div className="">
-      <div className="bg-light">
-        <ListCate />
-      </div>
+      {!isEmpty(productHomePage) ? (
+        <div className="bg-light">
+          <ListCate />
+        </div>
+      ) : (
+        <Skeleton  variant="rectangular" height={60} />
+      )}
 
-      {productHomePage &&
+      {!isEmpty(productHomePage) ?
         Object.keys(productHomePage)
           ?.sort(
             (a, b) =>
@@ -79,7 +83,7 @@ function Home() {
                 </div>
               </div>
             )
-          })}
+          }) : <div className="mt-5"><Skeleton  variant="rectangular" height={300} /></div>}
     </div>
   )
 }

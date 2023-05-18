@@ -6,7 +6,8 @@ import { useLocation, useNavigate } from "react-router-dom"
 import { useEffect, useMemo, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { ProductActions, productSelector } from "ReduxSaga/Product/ProductRedux"
-import { Pagination, Stack } from "@mui/material"
+import { Pagination, Skeleton, Stack } from "@mui/material"
+import { isEmpty } from "lodash"
 
 const productList = [
   {
@@ -73,23 +74,25 @@ function ListProduct(props) {
     if (!id) {
       navigate("/404")
     } else {
-        fetchProductList(page - 1)
+      fetchProductList(page - 1)
     }
   }, [id, navigate])
 
   const fetchProductList = (page) => {
-    dispatch(ProductActions.getProductByCateRequest({
+    dispatch(
+      ProductActions.getProductByCateRequest({
         params: {
-            categoryId: id,
-            page: page,
-            size: 15,
+          categoryId: id,
+          page: page,
+          size: 15,
         },
         callback: (res) => {
-            if(res) {
-                setTableData(res)
-            }
-        }
-    }))
+          if (res) {
+            setTableData(res)
+          }
+        },
+      })
+    )
   }
 
   return (
@@ -122,29 +125,34 @@ function ListProduct(props) {
                         ))}
                     </div> */}
 
-          {tableData?.content &&
-            tableData?.content?.map((item, index) => {
-              return (
-                <div className="col-4" key={index}>
-                  <ProductCard
-                    thumbnail={item?.category?.thumbnail}
-                    cate={item?.category?.routeKey}
-                    routeKey={item?.productCode?.toLowerCase()}
-                    id={item?.id}
-                    price={item?.price}
-                    name={item?.productName}
-                    specification={item?.specification}
-                    saleOff={item?.saleOff}
-                  />
+          {!isEmpty(tableData?.content)
+            ? tableData?.content?.map((item, index) => {
+                return (
+                  <div className="col-4" key={index}>
+                    <ProductCard
+                      thumbnail={item?.category?.thumbnail}
+                      cate={item?.category?.routeKey}
+                      routeKey={item?.productCode?.toLowerCase()}
+                      id={item?.id}
+                      price={item?.price}
+                      name={item?.productName}
+                      specification={item?.specification}
+                      saleOff={item?.saleOff}
+                    />
+                  </div>
+                )
+              })
+            : [1, 2, 3, 4, 5, 6].map((num) => (
+                <div key={num} className="col-4">
+                  <Skeleton variant="rectangular" height={300} />
                 </div>
-              )
-            })}
-          <Stack direction='row' justifyContent='center'>
-              <Pagination
-                count={tableData?.totalPages}
-                page={page}
-                onChange={handleChange}
-              />
+              ))}
+          <Stack direction="row" justifyContent="center">
+            <Pagination
+              count={tableData?.totalPages}
+              page={page}
+              onChange={handleChange}
+            />
           </Stack>
         </div>
       </div>
