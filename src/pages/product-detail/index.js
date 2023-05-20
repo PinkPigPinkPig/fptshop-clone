@@ -27,9 +27,7 @@ function ProductDetail() {
                 <span className="display-6 me-3">
                   <strong>{productDetail?.productName}</strong>
                 </span>
-                <span className="align-self-end text-secondary">{`(No.${Math.floor(
-                  productDetail?.createdTime
-                )})`}</span>
+                <span className="align-self-end text-secondary">{`${productDetail?.productCode}`}</span>
               </div>
               {/* <div className="d-flex flex-row-reverse col-6 my-3">
               <span>227 đánh giá | 323 Hỏi & đáp | So sánh</span>

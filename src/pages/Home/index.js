@@ -67,7 +67,7 @@ function Home() {
                       return (
                         <div className="col-3" key={index}>
                           <ProductCard
-                            thumbnail={item?.thumbnail}
+                            thumbnail={item?.thumbnail?.imageLink || item?.thumbnail}
                             cate={item?.category?.routeKey}
                             routeKey={item?.productCode?.toLowerCase()}
                             id={item?.id}

@@ -35,16 +35,19 @@ const PriceAndPurchase = ({ product }) => {
   }
 
   const row = [
-    createData('Màn hình', `${specification?.screenSize}, ${specification?.screenTech}, ${specification?.resolution}`),
-    createData('Camera sau', specification?.cameras?.[1]?.cameraResolution),
-    createData('Camera Selfie', specification?.cameras?.[0]?.cameraResolution),
-    createData('Bộ nhớ trong', '128gb'),
-    createData('CPU', specification?.cpu),
-    createData('Dung lượng pin', specification?.battery),
-    createData('Thẻ sim'),
-    createData('Hệ điều hành', specification?.osName),
-    createData('Xuất xứ', specification?.origin),
-    createData('Thời gian ra mắt',new Date(specification?.timeRelease)),
+    createData(
+      "Màn hình",
+      `${specification?.screenSize}, ${specification?.screenTech}, ${specification?.resolution}`
+    ),
+    createData("Camera sau", specification?.cameras?.[1]?.cameraResolution),
+    createData("Camera Selfie", specification?.cameras?.[0]?.cameraResolution),
+    createData("Bộ nhớ trong", "128gb"),
+    createData("CPU", specification?.cpu),
+    createData("Dung lượng pin", specification?.battery),
+    createData("Thẻ sim"),
+    createData("Hệ điều hành", specification?.osName),
+    createData("Xuất xứ", specification?.origin),
+    createData("Thời gian ra mắt", new Date(specification?.timeRelease)),
   ]
   return (
     <div className="col">
@@ -112,6 +115,12 @@ const PriceAndPurchase = ({ product }) => {
             500.000đ mua Robot hút bụi/ máy lọc nước
           </span>
         </div>
+        <p>
+          <strong>Mô tả sản phẩm:</strong>
+        </p>
+        <p>
+          {productDetail?.description}
+        </p>
       </div>
       <Button
         variant="contained"
@@ -139,11 +148,11 @@ const PriceAndPurchase = ({ product }) => {
         
       </div> */}
       {open && <PurchaseModal visible={open} onClose={handleClose} />}
-      <div className="d-flex flex-column bg-light p-3 my-3">
+      {/* <div className="d-flex flex-column bg-light p-3 my-3">
         <div>
           <p>Thông số kỹ thuật</p>
         </div>
-      </div>
+      </div> */}
     </div>
   )
 }

@@ -60,7 +60,7 @@ const ProductPreview = () => {
             {`${specification?.screenSize}, ${specification?.screenTech}, ${specification?.resolution}`}
           </span>
         </div>
-        <div className="mb-3">
+        {/* <div className="mb-3">
           <FontAwesomeIcon icon="camera" className="me-1" />
           {specification?.cameras
             ?.filter((res) => res.cameraType === "FRONT")
@@ -83,14 +83,14 @@ const ProductPreview = () => {
                 }`}</span>
               )
             })}
-        </div>
+        </div> */}
         <div className="mb-3">
           <FontAwesomeIcon icon="microchip" className="me-1" />
           <span>{specification?.cpu}</span>
         </div>
         <div>
           <FontAwesomeIcon icon="floppy-disk" className="me-1" />
-          <span>128 GB</span>
+          <span>{specification?.rom}</span>
         </div>
       </div>
       <div className="my-3">
@@ -103,7 +103,7 @@ const ProductPreview = () => {
         />
         <span>Giao hàng toàn quốc</span>
       </div>
-      <div className="d-flex flex-column bg-light p-3 "></div>
+      {/* <div className="d-flex flex-column bg-light p-3 "></div> */}
     </div>
   )
 }
