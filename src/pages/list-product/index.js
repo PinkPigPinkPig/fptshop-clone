@@ -130,7 +130,7 @@ function ListProduct(props) {
                 return (
                   <div className="col-4" key={index}>
                     <ProductCard
-                      thumbnail={item?.category?.thumbnail}
+                      thumbnail={item?.thumbnail?.imageLink || item?.thumbnail}
                       cate={item?.category?.routeKey}
                       routeKey={item?.productCode?.toLowerCase()}
                       id={item?.id}

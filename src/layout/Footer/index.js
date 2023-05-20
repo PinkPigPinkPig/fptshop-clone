@@ -33,7 +33,6 @@ export const Footer = () => {
             <Link to="#">Kiểm tra hóa đơn điện tử</Link>
             <Link to="#">Tra cứu thông tin bảo hành</Link>
             <Link to="#">Câu hỏi thường gặp mua hàng</Link>
-            <img src={certificateImg} alt="" />
           </Stack>
           <Stack spacing={2}>
             <Link to="#">Tin tuyển dụng</Link>
@@ -41,12 +40,6 @@ export const Footer = () => {
             <Link to="#">Hướng dẫn mua online</Link>
             <Link to="#">Hướng dẫn mua trả góp</Link>
             <Link to="#">Chính sách trả góp</Link>
-            <Typography className="fw-bold mt-5">Chứng nhận:</Typography>
-            <Stack direction="row">
-              {cerImg.map((item, index) => (
-                <img key={index} src={item} alt="" style={{ maxWidth: "56px" }} />
-              ))}
-            </Stack>
           </Stack>
           <Stack spacing={2}>
             <Link to="#">Hệ thống cửa hàng</Link>
@@ -59,12 +52,24 @@ export const Footer = () => {
               return (
                 <Box key={index}>
                   <Typography className="fw-bold">{item?.title}</Typography>
-                  <Typography variant="h5" className="fw-bold text-danger">{item?.phone}</Typography>
+                  <Typography variant="h5" className="fw-bold text-danger">
+                    {item?.phone}
+                  </Typography>
                 </Box>
               )
             })}
           </Stack>
         </Stack>
+      </div>
+      <div
+        className="w-100 d-flex justify-content-center align-items-center p-3"
+        style={{ backgroundColor: "#e5e8eb" }}
+      >
+        <strong>
+          ĐỒ ÁN TỐT NGHIỆP - XÂY DỰNG WEBSITE BÁN ĐỒ ĐIỆN TỬ - SINH VIÊN
+          <span className="text-danger"> NGUYỄN GIA LỘC </span>
+          K17 - NĂM 2023
+        </strong>
       </div>
     </div>
   )
