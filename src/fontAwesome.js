@@ -27,6 +27,7 @@ import {
   faBorderAll,
   faUser,
   faTrash,
+  faDatabase,
 } from "@fortawesome/free-solid-svg-icons"
 library.add(
   faMagnifyingGlass,
@@ -56,4 +57,5 @@ library.add(
   faBorderAll,
   faUser,
   faTrash,
+  faDatabase,
 )

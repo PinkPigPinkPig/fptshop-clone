@@ -61,9 +61,11 @@ const PriceAndPurchase = ({ product }) => {
               )}
             </strong>
           </span>
-          <span className="align-self-end text-secondary text-decoration-line-through fs-4">
-            {moneyConvert(productDetail?.price)}
-          </span>
+          {productDetail?.saleOff && (
+            <span className="align-self-end text-secondary text-decoration-line-through fs-4">
+              {moneyConvert(productDetail?.price)}
+            </span>
+          )}
         </div>
       </div>
       <div className="d-flex flex-column bg-light p-3 ">
@@ -115,18 +117,13 @@ const PriceAndPurchase = ({ product }) => {
             500.000đ mua Robot hút bụi/ máy lọc nước
           </span>
         </div>
-        <p>
-          <strong>Mô tả sản phẩm:</strong>
-        </p>
-        <p>
-          {productDetail?.description}
-        </p>
       </div>
       <Button
         variant="contained"
         color="error"
         onClick={handleClickBuyNow}
         className={`${styles.buttonHeight} w-100 mb-3`}
+        sx={{ marginTop: 5 }}
       >
         <span className="fs-4">MUA NGAY</span>
       </Button>
@@ -148,11 +145,20 @@ const PriceAndPurchase = ({ product }) => {
         
       </div> */}
       {open && <PurchaseModal visible={open} onClose={handleClose} />}
-      {/* <div className="d-flex flex-column bg-light p-3 my-3">
-        <div>
-          <p>Thông số kỹ thuật</p>
+      {productDetail?.description && (
+        <div className="d-flex flex-column bg-light p-3 my-3">
+          <div>
+            <p>
+              <strong>Mô tả sản phẩm:</strong>
+            </p>
+            <p>
+              {productDetail?.description?.length > 200
+                ? productDetail?.description.substring(0, 200 - 3) + "..."
+                : productDetail?.description}
+            </p>
+          </div>
         </div>
-      </div> */}
+      )}
     </div>
   )
 }

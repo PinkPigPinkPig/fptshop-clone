@@ -85,11 +85,15 @@ const ProductPreview = () => {
             })}
         </div> */}
         <div className="mb-3">
+          <FontAwesomeIcon icon="floppy-disk" className="me-1" />
+          <span>{specification?.ram}</span>
+        </div>
+        <div className="mb-3">
           <FontAwesomeIcon icon="microchip" className="me-1" />
           <span>{specification?.cpu}</span>
         </div>
         <div>
-          <FontAwesomeIcon icon="floppy-disk" className="me-1" />
+          <FontAwesomeIcon icon="database" className="me-1" />
           <span>{specification?.rom}</span>
         </div>
       </div>
