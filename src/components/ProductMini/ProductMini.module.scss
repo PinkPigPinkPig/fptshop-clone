@@ -7,6 +7,8 @@
 .miniImage {
     height: 100%;
     width: 100%;
+    max-height: 120px;
+    object-fit: contain;
 }
 
 .counterButton {
