@@ -46,7 +46,7 @@ const ProductMini = ({ product, onDelete, onCountChange }) => {
       <div className="d-flex flex-row mb-3">
         <div className={`w-25 text-wrap me-2`}>
           <img
-            src={phoneImg}
+            src={product?.thumbnail?.imageLink || phoneImg}
             alt=""
             className={`img-fluid ${styles.miniImage}`}
           />

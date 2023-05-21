@@ -61,7 +61,7 @@ const PriceAndPurchase = ({ product }) => {
               )}
             </strong>
           </span>
-          {productDetail?.saleOff && (
+          {productDetail?.saleOff > 0 && (
             <span className="align-self-end text-secondary text-decoration-line-through fs-4">
               {moneyConvert(productDetail?.price)}
             </span>
