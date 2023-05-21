@@ -271,7 +271,7 @@ const PurchaseProduct = ({ productList, onDelete }) => {
                       }) => (
                         <DatePicker
                           label="Ngày sinh"
-                          format="YYYY/MM/DD"
+                          format="DD/MM/YYYY"
                           slotProps={{
                             textField: {
                               size: "small",

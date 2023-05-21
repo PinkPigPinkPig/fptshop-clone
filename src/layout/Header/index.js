@@ -23,22 +23,48 @@ import {
 import { Fragment, useCallback, useEffect, useRef, useState } from "react"
 import { localStorageHelper } from "helpers"
 import { LOCAL_STORE } from "constants/system"
-import { useDispatch } from "react-redux"
-import { ProductActions } from "ReduxSaga/Product/ProductRedux"
-import { debounce } from "lodash"
+import { useDispatch, useSelector } from "react-redux"
+import { ProductActions, productSelector } from "ReduxSaga/Product/ProductRedux"
+import { debounce, isEmpty } from "lodash"
 
 function Header() {
   const [badgeContent, setBadgeContent] = useState(0)
   const [open, setOpen] = useState(false)
   const [searchTerm, setSearchTerm] = useState("")
   const [suggestions, setSuggestions] = useState([])
+  const [listCate, setListCate] = useState(CATE_DATA)
   const [debouncedFetchSuggestions, setDebouncedFetchSuggestions] =
     useState(null)
   const loading = open && suggestions.length === 0
   const location = useLocation()
   const navigate = useNavigate()
 
+  const { category } = useSelector(productSelector);
   const dispatch = useDispatch()
+
+  useEffect(() => {
+    if(isEmpty(category)) {
+      dispatch(ProductActions.getAllCategoryRequest())
+    }
+  }, [])
+
+  useEffect(() => {
+    if(!isEmpty) {
+      const data = CATE_DATA?.map((item) => {
+        let cateId
+        category?.map((e) => {
+          if(e?.routeKey == item?.cate) {
+            cateId = e?.id
+          }
+        })
+
+        return {...item, id: cateId}
+      })
+      setListCate(data)
+    }
+  }, [category])
+
+
 
   useEffect(() => {
     const data = JSON.parse(localStorageHelper.getItem(LOCAL_STORE.CART))
@@ -221,7 +247,7 @@ function Header() {
       <div className={`container-fluid ${styles.topMenu}`}>
         <div className="container d-flex justify-content-center flex-wrap px-0 py-2">
           <Stack direction="row" spacing={5}>
-            {CATE_DATA.map(renderCate)}
+            {listCate?.map(renderCate)}
           </Stack>
         </div>
       </div>

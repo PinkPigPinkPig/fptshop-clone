@@ -9,8 +9,6 @@ import { productSelector } from "ReduxSaga/Product/ProductRedux";
 const ListCate = () => {
   const { category } = useSelector(productSelector);
 
-  console.log("category", category);
-
   const renderCate = (cate, index) => {
     return (
       <Link
