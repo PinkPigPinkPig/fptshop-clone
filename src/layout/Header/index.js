@@ -49,11 +49,13 @@ function Header() {
   }, [])
 
   useEffect(() => {
-    if(!isEmpty) {
+    if(!isEmpty(category)) {
       const data = CATE_DATA?.map((item) => {
         let cateId
+      
         category?.map((e) => {
           if(e?.routeKey == item?.cate) {
+            console.log(e)
             cateId = e?.id
           }
         })
@@ -64,7 +66,7 @@ function Header() {
     }
   }, [category])
 
-
+  console.log({listCate})
 
   useEffect(() => {
     const data = JSON.parse(localStorageHelper.getItem(LOCAL_STORE.CART))
@@ -245,11 +247,11 @@ function Header() {
         </div>
       </div>
       <div className={`container-fluid ${styles.topMenu}`}>
-        <div className="container d-flex justify-content-center flex-wrap px-0 py-2">
+        {category && <div className="container d-flex justify-content-center flex-wrap px-0 py-2">
           <Stack direction="row" spacing={5}>
             {listCate?.map(renderCate)}
           </Stack>
-        </div>
+        </div>}
       </div>
     </div>
   )
