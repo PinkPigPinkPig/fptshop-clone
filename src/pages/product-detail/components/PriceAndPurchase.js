@@ -152,9 +152,7 @@ const PriceAndPurchase = ({ product }) => {
               <strong>Mô tả sản phẩm:</strong>
             </p>
             <p>
-              {productDetail?.description?.length > 200
-                ? productDetail?.description.substring(0, 200 - 3) + "..."
-                : productDetail?.description}
+              {productDetail?.description}
             </p>
           </div>
         </div>
